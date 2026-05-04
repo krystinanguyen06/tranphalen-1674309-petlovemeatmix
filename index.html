@@ -3,114 +3,94 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pet Love | Homepage</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300..900&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>PET LOVE | Homepage</title>
 </head>
 <body>
     <header>
-        <!--Consider accessibility in design websites-->
-        <nav aria-label="Navigation bar">
-            <div class="logo">
-                <a href="index.html" aria-label="Homepage">
-                    <img src="assets/logo.png" alt="Pet Love logo">
+        <!-- Use the aria-label attribute for screen reader accessibility -->
+         <nav class="navbar" aria-label="Navigation bar">
+            <ul class="nav-left">
+                <li><a href="index.html" class="nav-item">
+                    <!-- Use the aria-hidden attribute for screen reader to neglect the icon -->
+                    <!-- Svg icon is copied from Lucide library -->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-icon" area-hidden="true">
+                    <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                    </svg>
+                    <!-- Use tag <span> to keep the label on the same line with the icon -->
+                    <span>Home</span>
                 </a>
-                <ul class="nav-links">
-                    <li><a href="index.html" class="nav-btn">
-                        <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-house-icon lucide-house"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                </li>
+                <li class="nav-item-dropdown">
+                    <div class="shop-container">
+                        <a href="product-list.html" class="nav-item">
+                            <!-- Use the aria-hidden attribute for screen reader to neglect the icon -->
+                            <!-- Svg icon is copied from Lucide library -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-icon" aria-hidden="true">
+                                <circle cx="11" cy="4" r="2"/>
+                                <circle cx="18" cy="8" r="2"/>
+                                <circle cx="20" cy="16" r="2"/>
+                                <path d="M9 10a5 5 0 0 1 5 5v3.5a3.5 3.5 0 0 1-6.84 1.045Q6.52 17.48 4.46 16.84A3.5 3.5 0 0 1 5.5 10Z"/>
+                            </svg>
+                            <!-- Use tag <span> to keep the label on the same line with the icon -->
+                            <span>Shop</span>
+                        </a>
+                        <!-- Use of the drop-down icon to show the ability to choose other categories -->
+                        <button class="dropdown-toggle" aria-label="Read more categories">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-icon" aria-hidden="true">
+                                <path d="m6 9 6 6 6-6"/>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <ul class="dropdown-menu">
+                        <li><a href="product-list-meatmix.html">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-icon" aria-hidden="true">
+                                <path d="M16.4 13.7A6.5 6.5 0 1 0 6.28 6.6c-1.1 3.13-.78 3.9-3.18 6.08A3 3 0 0 0 5 18c4 0 8.4-1.8 11.4-4.3"/>
+                                <path d="m18.5 6 2.19 4.5a6.48 6.48 0 0 1-2.29 7.2C15.4 20.2 11 22 7 22a3 3 0 0 1-2.68-1.66L2.4 16.5"/>
+                                <circle cx="12.5" cy="8.5" r="2.5"/>
+                            </svg>
+                            <span>Meat Mix</span>
+                            </a>
+                        </li>
+                        <li><a href="product-list-treats.html">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-icon" aria-hidden="true">
+                                <path d="M17 10c.7-.7 1.69 0 2.5 0a2.5 2.5 0 1 0 0-5 .5.5 0 0 1-.5-.5 2.5 2.5 0 1 0-5 0c0 .81.7 1.8 0 2.5l-7 7c-.7.7-1.69 0-2.5 0a2.5 2.5 0 0 0 0 5c.28 0 .5.22.5.5a2.5 2.5 0 1 0 5 0c0-.81-.7-1.8 0-2.5Z"/>
+                            </svg>
+                            <span>Meat Mix</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            
+            <div class="nav-center">
+                <a href="index.html" aria-label="Back to homepage">
+                    <img src="assets/logo.png" alt="Pet Love logo" class="logo-img">
+                </a>
+            </div>
+
+            <ul class="nav-right">
+                <li>
+                    <a href="cart.html" class="nav-item" aria-label="Shopping cart">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-icon" aria-label="true">
+                            <circle cx="8" cy="21" r="1"/>
+                            <circle cx="19" cy="21" r="1"/>
+                            <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/>
+                        </svg>
                     </a>
-                </ul>
-            </div>
-
-        </nav>
-
-
-        <!--<div class="topnav">
-            <a href="index.html" class="active">Logo</a>
-        </div>
-        <div id="myLinks">
-            <a href="product-list.html">Our products</a>
-            <a href="cart.html">Shopping cart</a>
-        </div>-->
+                </li>
+                <li>
+                    <a href="sccount.html" class="nav-item" aria-label="Account">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-icon" aria-label="true">
+                            <circle cx="12" cy="8" r="5"/>
+                            <path d="M20 21a8 8 0 0 0-16 0"/>
+                        </svg>
+                    </a>
+                </li>
+            </ul>
+         </nav>
     </header>
-    <main>
-        <!--Hero section-->
-        <section class="hero">
-            <img src="assets/hero.jpeg" alt="Pet Love products range">
-            <h1>Hand Made Meat Mix</h1>
-            <p>We use raw ingredients, food based vitamins, minerals and fresh meats sourced from within Australia.</p>
-            <a href="html/product-list.html" class="button">Shop now</a>
-        </section>
-        <!--Products-->
-        <section class="products">
-            <h2>Our products</h2>
-            <div class="product-grid">
-                <!--Semantic HTML for independent components-->
-                <article class="card">
-                    <img src="" alt="Meat Mix">
-                    <button>Meat Mix</button>
-                </article>
-                <article class="card">
-                    <img src="" alt="Treats">
-                    <button>Treats</button>
-                </article>
-            </div>
-        </section>
-        <!--About-->
-        <section class="about">
-            <h2>Handmade Meat Mix</h2>
-            <p>Pet Love started  in 2000, when Claire Rowlands devised her healthy, raw meat recipe after losing her beloved dog Jirah to cancer. </p>
-            <img src="" alt="Owner and her dog">
-        </section>
-        <!--Feedback using carousel-->
-        <section class="feedback">
-            <h2>Our customers</h2>
-            <div class="slideshow-container">
-                <!--Images with caption text-->
-                <div class="mySlide fade">
-                    <div class="numbertext"> 1 / 3</div>
-                    <img src="" alt="customer-1">
-                    <div class="text">"I have been a customer for many years and cannot speak more highly of the place. The owner goes beyond & above to look after her customers & pets.”</div>
-                </div>
-                <div class="mySlide fade">
-                    <div class="numbertext"> 2 / 3</div>
-                    <img src="" alt="customer-2">
-                    <div class="text">"Claire is just awesome. Our dog Daisy  just love's going to the shop for her treats, dog food & the love she gets. Best pet shop north of the river."</div>
-                </div>
-                <div class="mySlide fade">
-                    <div class="numbertext"> 3 / 3</div>
-                    <img src="" alt="customer-3">
-                    <div class="text">"I'm so glad we found Pet Love! Our dog is on a specific vet-recommended diet, and they not only provide amazing quality meat mix, but quality of service is also fantastic." </div>
-                </div>
-                <!--Next and previous buttons-->
-                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-                <a class="next" onclick="plusSlides(1)">&#10095;</a>
-            </div>
-            <br>
-            <!-- The dots/circles -->
-            <div style="text-align:center">
-                <span class="dot" onclick="currentSlide(1)"></span>
-                <span class="dot" onclick="currentSlide(2)"></span>
-                <span class="dot" onclick="currentSlide(3)"></span>
-            </div>
-        </section>
-    </main>
-    <!--Footer-->
-    <footer>
-        <div class="footer-links">
-            <a href="product-list.html">Shop All</a>
-            <a href="">Terms & Conditions</a>
-        </div>
-        <p>0413 320 173</p>
-        <br>
-        <p>329 Moreland Road, Coburg, VIC, 3058</p>
-    </footer>
-    <script src="script.js"></script>
+    
 </body>
 </html>
+
