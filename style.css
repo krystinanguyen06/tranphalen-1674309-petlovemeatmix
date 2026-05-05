@@ -55,10 +55,14 @@ h1, h2, h3 {
 .shop-container {
   display: flex;
   align-items: center;
-  gap: 0;
+  gap: 5px;
 }
 
 /* Dropdown toggle list */
+.nav-item-dropdown {
+  position: relative; /* Set position to relative to position the dropdown menu absolutely within this container */
+}
+
 .dropdown-menu {
   display:none;
   position:absolute;
@@ -85,19 +89,48 @@ h1, h2, h3 {
   display: block;
 }
 
-/* Default hidden toggle list */
+/* Dropdown toggle animation */
 .dropdown-toggle {
   background: none;
   border: none;
+  padding: 0;
   cursor: pointer;
-}
-
-.nav-center {
+  color: var (--beige);
   display: flex;
-  justify-content: center;
-  align-items: center;
+  lign-items: center;
 }
 
+.nav-icon-down {
+  width: 20px;
+  height: 20px;
+  stroke: currentColor;
+  transition: transform 0.3s ease; /* Smooth transition for the rotation */
+  transform: rotate (0deg); /* Initial state of the arrow */
+}
+
+/* Active button is clicked, rotate the arrow 180 degrees */
+.dropdown-toggle.active .nav-icon-down {
+  transform: rotate(180deg);
+}
+
+/* Show the dropdown menu when the button is active */
+.nav-item-dropdown {
+  position: relative; 
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: var(--plum);
+  min-width: 150px;
+  padding: 10px;
+  z-index: 1000;
+  border-radius: 4px;
+}
+
+/* Style of icons on the navigation bar */
 .nav-icon {
   width: 20px;
   height: 20px;
@@ -118,3 +151,4 @@ h1, h2, h3 {
   display: block;
   object-fit: contain;
 }
+

@@ -9,12 +9,9 @@ dropdownToggle.addEventListener('click', (event) => {
     dropdownToggle.classList.toggle('active');
 
     // Toggle the visibility of the dropdown menu
-    const isVisible = dropdownMenu.style.display === 'block';
-    dropdownMenu.style.display = isVisible ? 'none' :'block';
-});
-
-// Close the dropdown menu when clicking outside of it
-document.addEventListener('click', (event) => {
-    dropdownMenu.style.display = 'none';
-    dropdownToggle.classList.remove('active'); // Reset the toggle state
+    if (dropdownMenu.style.display === 'block') {
+        dropdownMenu.style.display = 'none';
+    } else {
+        dropdownMenu.style.display = 'block';
+    }
 });
