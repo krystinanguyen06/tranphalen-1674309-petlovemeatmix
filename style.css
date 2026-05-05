@@ -4,6 +4,8 @@
     --skyblue: #C8C7D7;
     --cream: #F6D8A2;
     --beige: #F9EEE8; 
+    --font-body: 'Be Vietnam Pro', sans-serif;
+    --font-heading: 'Frank Ruhl Libre', serif;
 }
 /* Reset default margin and padding of browser */
 * {
@@ -57,17 +59,31 @@ h1, h2, h3 {
 }
 
 /* Dropdown toggle list */
+.dropdown-menu {
+  display:none;
+  position:absolute;
+  background-color: var(--plum);
+  padding: 10px;
+  list-style: none;
+  padding: 10px;
+  z-index: 1000; /* Ensure the dropdown menu appears above other content */
+}
+
+/* Hidden/visible toggle list */
 .dropdown-toggle {
   background: none;
   border: none;
 }
 
-/* Hidden/visible toggle list */
-.dropdown-toggle.active .icon-down {
+.dropdown-toggle .icon-up {
   display: none;
 }
 
-.dropdown-toggle.active .icon-up {
+.dropdown-toggle .icon-down {
+  display: none;
+}
+
+.dropdown-toggle .icon-up {
   display: block;
 }
 
@@ -81,4 +97,19 @@ h1, h2, h3 {
   width: 20px;
   height: 20px;
   stroke: currentColor; /* Icons automatically take the beige colour of their parents */
+}
+
+/*Logo styling */
+.nav-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;  
+  height: 100%;
+}
+
+.logo-img {
+  height: 50px;
+  width: auto;
+  display: block;
+  object-fit: contain;
 }
