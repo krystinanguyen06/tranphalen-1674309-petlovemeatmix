@@ -152,3 +152,71 @@ h1, h2, h3 {
   object-fit: contain;
 }
 
+/* ALL PRODUCTS PAGE */
+.centered-desc {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 40px;
+  color: var(--plum);
+  font-size: 1.2rem;  
+}
+
+/* Folder tabs style */
+.tabs-container {
+  display: flex;
+  gap: 5px;
+  padding: 0 5%;
+  border-bottom: 2px solid var(--plum);
+}
+
+.tab-btn {
+  padding: 12px 30px;
+  border: 2px solid var(--plum);
+  border-bottom: none;
+  backgroun: var(--beige);
+  border-raidus: 15px 15px 0 0;
+  cursor: pointer;
+  font-family: var(--font-heading);
+  color: var(--plum); 
+  transition: 0.3s ease;
+}
+
+.tab-btn.active {
+  background-color: var(--plum);
+  color: var(--beige);
+}
+
+/* 2-column layout */
+.product-container {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  gap: 40px;
+  padding: 40px 5%;
+}
+
+.results-header {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  gap: 40px;
+  padding: 40px 5%;
+}
+
+.results-header {
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
+/* Product card */
+.product-card {
+  background: var(--beige);
+  border-radius: 20px;
+  padding: 15px;
+  text-align: center;
+  border: 2px solid var(--plum);
+}
+
+.product-card img {
+  width: 100%;
+  border-radius: 15px;
+  margin-bottom: 15px;
+}

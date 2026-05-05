@@ -15,3 +15,8 @@ dropdownToggle.addEventListener('click', (event) => {
         dropdownMenu.style.display = 'block';
     }
 });
+
+// ALL PRODUCT PAGE 
+const products = [
+    {id: 1, name: "Duck Meat Mix", price: }
+]
