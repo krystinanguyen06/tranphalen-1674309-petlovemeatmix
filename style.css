@@ -1,6 +1,84 @@
-/*Colour palette set up*/
+/* Declare CSS variables for brand's colour palette and fonts */
 :root {
     --plum: #7F6070;
     --skyblue: #C8C7D7;
-    --cream: #F6D8A2; 
+    --cream: #F6D8A2;
+    --beige: #F9EEE8; 
+}
+/* Reset default margin and padding of browser */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+/* Standard 1.6 line-height in web design */
+body {
+  font-family: var(--font-body);
+  background-color: var(--cream);
+  color: var(--plum);
+  line-height: 1.6;
+}
+
+h1, h2, h3 {
+    font-family: var(--font-heading);
+}
+
+/* Navigation bar */
+.navbar {
+  display: flex;
+  justify-content: space-between; /* Utilise justify-content: space-between to push nav-left, nav-center, nav-right as far as possible */
+  align-items: center;
+  padding: 20px 5%;
+  background-color: var(--plum);
+}
+
+.nav-left, .nav-right {
+  display: flex;
+  list-style: none;
+  gap: 25px;
+}
+
+.nav-item {
+  color: var(--beige);
+  text-decoration: none; /* Reset the blue default colour of link */
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer; /* Signal users there's more information in the toggle list */
+  background: none; /* Reset the default style of tag <button> */
+  border: none; /* Reset the default style of tag <button> */
+}
+
+/* Container for the toggle list */
+.shop-container {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+/* Dropdown toggle list */
+.dropdown-toggle {
+  background: none;
+  border: none;
+}
+
+/* Hidden/visible toggle list */
+.dropdown-toggle.active .icon-down {
+  display: none;
+}
+
+.dropdown-toggle.active .icon-up {
+  display: block;
+}
+
+.nav-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-icon {
+  width: 20px;
+  height: 20px;
+  stroke: currentColor; /* Icons automatically take the beige colour of their parents */
 }
