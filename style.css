@@ -69,22 +69,27 @@ h1, h2, h3 {
   z-index: 1000; /* Ensure the dropdown menu appears above other content */
 }
 
-/* Hidden/visible toggle list */
+.nav-icon-up {
+  display: none;
+}
+
+.nav-icon-down {
+  display: block;
+}
+/* When the dropdown menu is visible, show the up icon and hide the down icon */
+.dropdown-toggle .nav-icon-down {
+  display: none;
+}
+
+.dropdown-toggle .nav-icon-up {
+  display: block;
+}
+
+/* Default hidden toggle list */
 .dropdown-toggle {
   background: none;
   border: none;
-}
-
-.dropdown-toggle .icon-up {
-  display: none;
-}
-
-.dropdown-toggle .icon-down {
-  display: none;
-}
-
-.dropdown-toggle .icon-up {
-  display: block;
+  cursor: pointer;
 }
 
 .nav-center {

@@ -2,16 +2,19 @@
 const dropdownToggle = document.querySelector('.dropdown-toggle');
 const dropdownMenu = document.querySelector('.dropdown-menu');
 
-// Click event
-dropdownToggle.addEventListener('click', () => {
-    event.stopPropagation(); // Prevent the click event from propagating to the document
-    dropdownMenu.classList.toggle('active'); // Toggle the active class to show/hide the dropdown menu
-    const inVisible = dropdownMenu.style.display === 'block';
-    dropdownMenu.style.display = isVisible ? 'none' : 'block'; // Toggle the display property to show/hide the dropdown menu
+dropdownToggle.addEventListener('click', (event) => {
+    event.stopPropagation(); // Prevent the click event from bubbling up to the document
+    
+    // Toggle class 'active' for the css animation to change and up and down icon
+    dropdownToggle.classList.toggle('active');
 
-// Close dropdown menu when clicking outside of it
-    document.addEventListener('click', () => {
-    dropdownMenu.style.display = 'none'; // Hide the dropdown menu when clicking outside of it
-    dropdownToggle.classList.remove('active'); // Remove the active class from the dropdown toggle button
-    });
+    // Toggle the visibility of the dropdown menu
+    const isVisible = dropdownMenu.style.display === 'block';
+    dropdownMenu.style.display = isVisible ? 'none' :'block';
+});
+
+// Close the dropdown menu when clicking outside of it
+document.addEventListener('click', (event) => {
+    dropdownMenu.style.display = 'none';
+    dropdownToggle.classList.remove('active'); // Reset the toggle state
 });
