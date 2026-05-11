@@ -145,7 +145,9 @@ function displayProducts(productsToDiaplay) {
     countText.innerText = `Showing ${productsToDisplay.length} products`;
 
     //Use .map to loop through the array of the product to turn all array items into one string then insert the HTML to the webpage
-    grid.innerHTML = productsToDisplay.map(product) => renderProduct(product)).join('');
+    grid.innerHTML = productsToDisplay
+        .map(product => renderProduct(product))
+        .join('');
 
     //Run the displayProducts function immediately when the page loads.
 }
@@ -221,8 +223,4 @@ tabButtons.forEach(button => {
 
         renderProducts(filteredProducts);
     });
-});
-
-// Initial render when page loads
-renderProducts(products);
-
+}) **/
