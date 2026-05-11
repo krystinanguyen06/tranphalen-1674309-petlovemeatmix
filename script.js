@@ -33,7 +33,7 @@ const products = [
             "1kg": {price: 16.5, unitPrice: 1.65},
             "2kg": {price: 32, unitPrice: 1.00},
         }
-    }
+    },
     {
         id: 2,
         name: "Venison Meat Mix",
@@ -48,7 +48,7 @@ const products = [
             "1kg": {price: 16.5, unitPrice: 1.65},
             "2kg": {price: 32, unitPrice: 1.00},
         }
-    }
+    },
     {
         id: 3,
         name: "Beef Meat Mix",
@@ -63,7 +63,7 @@ const products = [
             "1kg": {price: 16.5, unitPrice: 1.65},
             "2kg": {price: 32, unitPrice: 1.00},
         }
-    }
+    },
     {
         id: 4,
         name: "Chicken Meat Mix",
@@ -83,9 +83,73 @@ const products = [
 
 // Render function for product list in HTML template
 function renderProduct(product) {
+
+    //Product price and unit price need to be changed according to the product size
+    //Hence, I need to set up a default weight, then get its price from product.options and display that accordingly
+    //Set up default weight
+    const defaultWeight = "200g";
+    const selectedOption = product.options[defaultWeight];
+
+    //
     return `
-    `
+    <div class="product-card" data-id="${product.id}>
+        
+        <div class="stock-boxes">
+            <div class="stock-box">${product.stock}kg left</div>
+        </div>
+
+        <img src="${product.image}" alt="${product.name}">
+
+        <div class="product-tags">
+            ${product.tags.map(tag => 
+                `<span class="tag">${tag}</span>`
+            ).joint('')}
+        </div>
+
+        <h3>${product.name}</h3>
+
+        <div class="purchase-area">
+            <select class="weight-select" 
+                onchange="updatePrice(this, ${product.id})">
+
+                <option value="200g">200g</option>
+                <option value="500g">500g</option>
+                <option value="1kg">1kg</option>
+                <option value="2kg">2kg</option>
+
+            </select>
+
+            <div class="price-display">
+                <span class="main-price">
+                    ${selectedOption.price}
+                </span>
+
+                <span class="unit-price">
+                    ($${selectedOption.unitPrice}/100g)
+                </span>
+            </div>
+        </div>
+
+            <button class="quick-add">Quick add</button>
+
+    </div>
+    `;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // 2. Select DOM Elements
 const productGrid = document.getElementById('product-grid');
