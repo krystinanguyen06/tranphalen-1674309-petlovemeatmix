@@ -92,7 +92,7 @@ function renderProduct(product) {
 
     //
     return `
-    <div class="product-card" data-id="${product.id}>
+    <div class="product-card" data-id="${product.id}">
         
         <div class="stock-boxes">
             <div class="stock-box">${product.stock}kg left</div>
@@ -103,7 +103,7 @@ function renderProduct(product) {
         <div class="product-tags">
             ${product.tags.map(tag => 
                 `<span class="tag">${tag}</span>`
-            ).joint('')}
+            ).join('')}
         </div>
 
         <h3>${product.name}</h3>
@@ -134,6 +134,20 @@ function renderProduct(product) {
 
     </div>
     `;
+}
+
+//Function to display function that renders product data
+function displayProducts(productsToDiaplay) {
+    const grid = document.getElementById('product-grid');
+    const countText = document.getElementById('product-count');
+
+    //Update product results
+    countText.innerText = `Showing ${productsToDisplay.length} products`;
+
+    //Use .map to loop through the array of the product to turn all array items into one string then insert the HTML to the webpage
+    grid.innerHTML = productsToDisplay.map(product) => renderProduct(product)).join('');
+
+    //Run the displayProducts function immediately when the page loads.
 }
 
 
