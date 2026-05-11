@@ -93,12 +93,12 @@ function renderProduct(product) {
     //
     return `
     <div class="product-card" data-id="${product.id}">
-        
+
+        <img src="${product.image}" alt="${product.name}">
+
         <div class="stock-boxes">
             <div class="stock-box">${product.stock}kg left</div>
         </div>
-
-        <img src="${product.image}" alt="${product.name}">
 
         <div class="product-tags">
             ${product.tags.map(tag => 
@@ -150,5 +150,6 @@ function displayProducts(productsToDisplay) {
         .join('');
 }
 
- //Run the displayProducts function immediately when the page loads.
- displayProducts(products);
+//Run the displayProducts function immediately when the page loads.
+    displayProducts(products);
+
