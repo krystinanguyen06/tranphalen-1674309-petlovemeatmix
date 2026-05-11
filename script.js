@@ -1,4 +1,4 @@
-// Dropdown toggle list icon animation
+/**Dropdown toggle list icon animation
 const dropdownToggle = document.querySelector('.dropdown-toggle');
 const dropdownMenu = document.querySelector('.dropdown-menu');
 
@@ -15,6 +15,9 @@ dropdownToggle.addEventListener('click', (event) => {
         dropdownMenu.style.display = 'block';
     }
 });
+**/
+
+
 
 // PRODUCT LIST PAGE
 // 1. Product data
@@ -81,6 +84,25 @@ const products = [
     }
 ]
 
+// Update price according to weight 
+window.updatePrice = function(selectElement, productId) {
+    //find data based on id
+    const product = products.find(p => p.id === productId);
+    const selectedWeight = selectElement.value;
+    const option = product.options[selectedWeight];
+
+    //find card containing options
+    const card = selectElement.closest('.product-card');
+
+    //Update accordingly price
+    const mainPriceEl = card.querySelector('.main-price');
+    const unitPriceEl = card.querySelector('.unit-price');
+
+    mainPriceEl.innerText = `$${option.price}`;
+    unitPriceEl.innerText = `($${option.unitPrice}/100g)`;
+
+};
+
 // Render function for product list in HTML template
 function renderProduct(product) {
 
@@ -141,15 +163,18 @@ function displayProducts(productsToDisplay) {
     const grid = document.getElementById('product-grid');
     const countText = document.getElementById('product-count');
 
-    //Update product results
-    countText.innerText = `Showing ${productsToDisplay.length} products`;
-
-    //Use .map to loop through the array of the product to turn all array items into one string then insert the HTML to the webpage
-    grid.innerHTML = productsToDisplay
-        .map(product => renderProduct(product))
-        .join('');
+    if (grid) {
+        if (countText) countText.innerText = `Showing ${productsToDisplay.length} products`;
+        grid.innerHTML = productsToDisplay.map(product => renderProduct(product)).join('');
+    }
 }
 
 //Run the displayProducts function immediately when the page loads.
     displayProducts(products);
+
+//PRODUCT DETAILS PAGE
+const detailContainer = document.getElementById('display-name');
+if (detailContainer) {
+
+}
 
