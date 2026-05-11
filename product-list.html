@@ -4,13 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PET LOVE | All products</title>
+    <link rel="stylesheet" href="./style.css">
+    <!--Fonts-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300..900&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./style.css">
 </head>
 <body>
     <header>
@@ -99,58 +100,60 @@
          </nav>
     </header>
     <main class="product-list">
-
+        <!--Product list overview-->
         <section class="page-overview">
             <h2>All products</h2>
             <p>Our recipes are designed with your pet's health in mind to keep your pet healthy and happy.</p>
         </section>
 
-        <section class="results-section">
-            <div class="results-header">
-                <span id="product=count">Showing 0 products</span>
-            </div>
+        <!--Product list changes according to chosen category tab-->
+        <div class="tabs-container">
+            <!--Active tab is selected by default-->
+            <button class="tab-btn active" data-category="meatmix">MEAT MIX</button>
+            <button class="tab-btn" data-category="treats">TREATS</button>
+        </div>
+        
+        <!--Inside the product tabs, there will be filtering and sorting options with results announcement-->
+        <div class="product-container">
+            
+            <!--Filtering and sorting function are on the side bar next to product list-->
+            <aside class="product-sidebar">
 
-            <div id="product-grid" class="product-grid">
-            </div>
+                <div class="results-count-container">
+                    <span if="product-count" class="count-text">
+                        Showing 0 products <!--0 for default, change later in JS-->
+                    </span>
+                </div>
+
+                <hr> <!--Create a horizontal line-->
+
+                <label>Filtering</label>
+                <div class="filter-group">
+                    <label><input type="checkbox" class="tag-filter" value="Gentle digestion">Gentle digestion</label>
+                    <label><input type="checkbox" class="tag-filter" value="High energy">High energy</label>
+                    <label><input type="checkbox" class="tag-filter" value="Hypoallergenic">Hypoallergenic</label>
+                </div>
+
+                <hr> <!--Create a horizontal line-->
+                
+                <div class="filterandsort-group">
+                    <label>Sort by:</label>
+                    <select id="sort-options">
+                        <option value="default">Default</option>
+                        <option value="price-lowhigh">Price: Low to High</option>
+                        <option value="price-highlow">Price: High to Low</option>
+                        <option value="name-az">Name: A to Z</option>
+                        <option value="name-za">Name: Z to A</option>
+                    </select>
+                </div>
+            </aside>
+        </div>
+
+        <section class="product-list-section">
+            <!--HTML template will be filled from JS function-->
+            <div id="product-grid" class="product-grid"></div>
         </section>
-
-
-
-
-       
+    <!--Link to JS script--> 
     <script src="script.js"></script>
 </body>
 </html>
-
- <!--
-        <div class="tabs-container">
-            <button class="tab-btn active" data-category="all">SHOP ALL</button>
-            <button class="tab-btn" data-category="meatmix">MEAT MIX</button>
-            <button class="tab-btn" data-category="treats">TREATS</button>
-        </div>
-        <div class="product-container">
-            <aside class="filter-sidebar">
-                <h3>Filtering</h3>
-                <div class="filter-group">
-                <label>Sort by:</label>
-                <select id="sort-select">
-                    <option value="default">Default</option>
-                    <option value="price-low">Price: Low to High</option>
-                    <option value="price-high">Price: High to Low</option>
-                    <option value="name-asc">Name: A to Z</option>
-                    <option value="name-desc">Name: Z to A</option> 
-                </select>
-                </div>
-            </aside>
-
-            <section class="results-section">
-                <div class="results-header">
-                    <span id="product-count">Showing 0 products</span>
-                </div>
-                <div id="product-grid" class="product-grid"></div>
-            </section>
-        </div>
-    </main>>
-
-    </main>
--->
