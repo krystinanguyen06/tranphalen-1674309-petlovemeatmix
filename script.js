@@ -20,7 +20,7 @@ dropdownToggle.addEventListener('click', (event) => {
 // 1. Product data
 const products = [
     {
-        id: 1;
+        id: 1,
         name: "Duck Meat Mix",
         category: "meatmix", 
         tags: ["Gentle digestion"],
@@ -35,7 +35,7 @@ const products = [
         }
     }
     {
-        id: 2;
+        id: 2,
         name: "Venison Meat Mix",
         category: "meatmix", 
         tags: ["Hypoallergenic"],
@@ -50,7 +50,7 @@ const products = [
         }
     }
     {
-        id: 3;
+        id: 3,
         name: "Beef Meat Mix",
         category: "meatmix", 
         tags: ["high energy"],
@@ -65,7 +65,7 @@ const products = [
         }
     }
     {
-        id: 4;
+        id: 4,
         name: "Chicken Meat Mix",
         category: "meatmix", 
         tags: ["gentle digestion"],
@@ -81,6 +81,11 @@ const products = [
     }
 ]
 
+// Render function for product list in HTML template
+function renderProduct(product) {
+    return `
+    `
+}
 
 // 2. Select DOM Elements
 const productGrid = document.getElementById('product-grid');
