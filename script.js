@@ -16,51 +16,71 @@ dropdownToggle.addEventListener('click', (event) => {
     }
 });
 
-// ALL PRODUCT PAGE 
-// 1. Product Data
+// PRODUCT LIST PAGE
+// 1. Product data
 const products = [
-    { 
-        id: 1, 
-        name: "Duck Meat Mix", 
-        price: 3.8, 
+    {
+        id: 1;
+        name: "Duck Meat Mix",
         category: "meatmix", 
-        img: "assets/duck.jpg",
-        stock: "20kg left"
-    },
-    { 
-        id: 2, 
-        name: "Venison Meat Mix", 
-        price: 3.8, 
-        category: "meatmix", 
-        img: "assets/venison.jpg",
-        stock: "15kg left"
-    },
-    { 
-        id: 3, 
-        name: "Beef Meat Mix", 
-        price: 3.8, 
-        category: "meatmix", 
-        img: "assets/beef.jpg",
-        stock: "30kg left"
-    },
-    { 
-        id: 4, 
-        name: "Chicken Meat Mix", 
-        price: 3.8, 
-        category: "meatmix", 
-        img: "assets/chicken.jpg",
-        stock: "10kg left"
-    },
-    { 
-        id: 5, 
-        name: "Gourmet Treats", 
-        price: 5.5, 
-        category: "treats", 
-        img: "assets/treats.jpg",
-        stock: "In Stock"
+        tags: ["Gentle digestion"],
+        stock: 20, //kg
+        image: "assets/duck-2kg.jpeg",
+        //price changes according to product weight
+        options: {
+            "200g": {price: 3.8, unitPrice: 1.9},
+            "500g": {price: 9, unitPrice: 1.8},
+            "1kg": {price: 16.5, unitPrice: 1.65},
+            "2kg": {price: 32, unitPrice: 1.00},
+        }
     }
-];
+    {
+        id: 2;
+        name: "Venison Meat Mix",
+        category: "meatmix", 
+        tags: ["Hypoallergenic"],
+        stock: 20, //kg
+        image: "assets/venison-1kg.jpeg",
+        //price changes according to product weight
+        options: {
+            "200g": {price: 3.8, unitPrice: 1.9},
+            "500g": {price: 9, unitPrice: 1.8},
+            "1kg": {price: 16.5, unitPrice: 1.65},
+            "2kg": {price: 32, unitPrice: 1.00},
+        }
+    }
+    {
+        id: 3;
+        name: "Beef Meat Mix",
+        category: "meatmix", 
+        tags: ["high energy"],
+        stock: 20, //kg
+        image: "assets/beef-200g.jpeg",
+        //price changes according to product weight
+        options: {
+            "200g": {price: 3.8, unitPrice: 1.9},
+            "500g": {price: 9, unitPrice: 1.8},
+            "1kg": {price: 16.5, unitPrice: 1.65},
+            "2kg": {price: 32, unitPrice: 1.00},
+        }
+    }
+    {
+        id: 4;
+        name: "Chicken Meat Mix",
+        category: "meatmix", 
+        tags: ["gentle digestion"],
+        stock: 20, //kg
+        image: "assets/chicken-500g.jpeg",
+        //price changes according to product weight
+        options: {
+            "200g": {price: 3.8, unitPrice: 1.9},
+            "500g": {price: 9, unitPrice: 1.8},
+            "1kg": {price: 16.5, unitPrice: 1.65},
+            "2kg": {price: 32, unitPrice: 1.00},
+        }
+    }
 
+    
 // 2. Select DOM Elements
 const productGrid = document.getElementById('product-grid');
 const productCount = document.getElementById('product-count');
