@@ -7,16 +7,18 @@
     --font-body: 'Be Vietnam Pro', sans-serif;
     --font-heading: 'Frank Ruhl Libre', serif;
 }
+
 /* Reset default margin and padding of browser */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+
 /* Standard 1.6 line-height in web design */
 body {
   font-family: var(--font-body);
-  background-color: var(--cream);
+  background-color: var(--beige);
   color: var(--plum);
   line-height: 1.6;
 }
@@ -49,6 +51,17 @@ h1, h2, h3 {
   cursor: pointer; /* Signal users there's more information in the toggle list */
   background: none; /* Reset the default style of tag <button> */
   border: none; /* Reset the default style of tag <button> */
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* Container for the toggle list */
@@ -152,71 +165,93 @@ h1, h2, h3 {
   object-fit: contain;
 }
 
+
+
+
+
+
+
 /* ALL PRODUCTS PAGE */
-.centered-desc {
-  text-align: center;
-  max-width: 600px;
-  margin: 0 auto 40px;
-  color: var(--plum);
-  font-size: 1.2rem;  
+
+/* Container including search sidebar and result product grid */
+.search-and-results {
+  display: flex !important; 
+  flex-direction: row;
+  align-items: flex-start; /* Align all items from the start of the top */
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-/* Folder tabs style */
+/* Left aside bar */
+.product-sidebar {
+  flex: 0 0 280px; /* Fixed width for the aside bar */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+/* Tabs container */
 .tabs-container {
   display: flex;
-  gap: 5px;
-  padding: 0 5%;
-  border-bottom: 2px solid var(--plum);
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  margin-bottom: 20px;
 }
 
 .tab-btn {
-  padding: 12px 30px;
-  border: 2px solid var(--plum);
-  border-bottom: none;
-  backgroun: var(--beige);
-  border-raidus: 15px 15px 0 0;
+  border: none; 
+  background: var(--beige);
+  padding: 10px 15px;
+  border-radius: 8px;
   cursor: pointer;
-  font-family: var(--font-heading);
-  color: var(--plum); 
-  transition: 0.3s ease;
+  text-align: left;
+  width: 100%;
+  transition: 0.3s;
 }
 
 .tab-btn.active {
-  background-color: var(--plum);
-  color: var(--beige);
+  background-color: var(--cream);
+  color: white;
 }
 
-/* 2-column layout */
-.product-container {
+.tab-btn h3 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+/* Right aligned product grid */
+.product-list-grid {
+  flex: 1;
+}
+
+.product-row-grid {
   display: grid;
-  grid-template-columns: 250px 1fr;
-  gap: 40px;
-  padding: 40px 5%;
-}
-
-.results-header {
-  display: grid;
-  grid-template-columns: 250px 1fr;
-  gap: 40px;
-  padding: 40px 5%;
-}
-
-.results-header {
-  margin-bottom: 20px;
-  font-weight: 500;
-}
-
-/* Product card */
-.product-card {
-  background: var(--beige);
-  border-radius: 20px;
-  padding: 15px;
-  text-align: center;
-  border: 2px solid var(--plum);
-}
-
-.product-card img {
+  /* 2 products each row for desktop */
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px; /* Gap between product cards */
   width: 100%;
-  border-radius: 15px;
-  margin-bottom: 15px;
+}
+
+.product-row-grid img {
+  width: 100%;
+  max-width: 300px;
+}
+
+/* Group Filtering & sorting */
+.filter-group, .filterandsort-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  margin: 15px 0;
+}
+
+.filter-group label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
 }

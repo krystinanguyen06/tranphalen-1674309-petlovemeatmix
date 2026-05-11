@@ -102,23 +102,22 @@
     <main class="product-list">
         <!--Product list overview-->
         <section class="page-overview">
-            <h2>All products</h2>
+            <h1>All products</h1>
             <p>Our recipes are designed with your pet's health in mind to keep your pet healthy and happy.</p>
         </section>
 
-        <!--Product list changes according to chosen category tab-->
-        <div class="tabs-container">
-            <!--Active tab is selected by default-->
-            <button class="tab-btn active" data-category="meatmix">MEAT MIX</button>
-            <button class="tab-btn" data-category="treats">TREATS</button>
-        </div>
-        
-        <!--Inside the product tabs, there will be filtering and sorting options with results announcement-->
-        <div class="product-container">
-            
+        <section class="search-and-results">
+                    
             <!--Filtering and sorting function are on the side bar next to product list-->
             <aside class="product-sidebar">
+                <!--Product list changes according to chosen category tab-->
+                <div class="tabs-container">
+                    <!--Active tab is selected by default-->
+                    <button class="tab-btn active" data-category="meatmix"><h3>MEAT MIX</h3></button>
+                    <button class="tab-btn" data-category="treats"><h3>TREATS</h3></button>
+                </div>
 
+                <!--Results count-->
                 <div class="results-count-container">
                     <span id="product-count" class="count-text">
                         Showing 0 products <!--0 for default, change later in JS-->
@@ -128,14 +127,14 @@
                 <hr> <!--Create a horizontal line-->
 
                 <label>Filtering</label>
-                <div class="filter-group">
-                    <label><input type="checkbox" class="tag-filter" value="Gentle digestion">Gentle digestion</label>
-                    <label><input type="checkbox" class="tag-filter" value="High energy">High energy</label>
-                    <label><input type="checkbox" class="tag-filter" value="Hypoallergenic">Hypoallergenic</label>
-                </div>
+                    <div class="filter-group">
+                        <label><input type="checkbox" class="tag-filter" value="Gentle digestion">Gentle digestion</label>
+                        <label><input type="checkbox" class="tag-filter" value="High energy">High energy</label>
+                        <label><input type="checkbox" class="tag-filter" value="Hypoallergenic">Hypoallergenic</label>
+                    </div>
 
                 <hr> <!--Create a horizontal line-->
-                
+                        
                 <div class="filterandsort-group">
                     <label>Sort by:</label>
                     <select id="sort-options">
@@ -147,11 +146,12 @@
                     </select>
                 </div>
             </aside>
-        </div>
 
-        <section class="product-list-section">
-            <!--HTML template will be filled from JS function-->
-            <div id="product-grid" class="product-grid"></div>
+            <div class="product-list-grid">
+                <!--HTML template will be filled from JS function-->
+                <div id="product-grid" class="product-row-grid"></div>
+            </div>
+
         </section>
     <!--Link to JS script--> 
     <script src="script.js"></script>
