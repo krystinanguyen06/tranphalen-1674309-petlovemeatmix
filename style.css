@@ -174,7 +174,7 @@ section {
 /* ALL PRODUCTS PAGE */
 
 /* Container including search sidebar and result product grid */
-.search-and-results {
+.product-section {
   display: flex !important; 
   flex-direction: row;
   align-items: flex-start; /* Align all items from the start of the top */
