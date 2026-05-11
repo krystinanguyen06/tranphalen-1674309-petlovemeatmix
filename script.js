@@ -79,8 +79,9 @@ const products = [
             "2kg": {price: 32, unitPrice: 1.00},
         }
     }
+]
 
-    
+
 // 2. Select DOM Elements
 const productGrid = document.getElementById('product-grid');
 const productCount = document.getElementById('product-count');
