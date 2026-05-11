@@ -137,7 +137,7 @@ function renderProduct(product) {
 }
 
 //Function to display function that renders product data
-function displayProducts(productsToDiaplay) {
+function displayProducts(productsToDisplay) {
     const grid = document.getElementById('product-grid');
     const countText = document.getElementById('product-count');
 
@@ -148,6 +148,7 @@ function displayProducts(productsToDiaplay) {
     grid.innerHTML = productsToDisplay
         .map(product => renderProduct(product))
         .join('');
-
-    //Run the displayProducts function immediately when the page loads.
 }
+
+ //Run the displayProducts function immediately when the page loads.
+ displayProducts(products);
