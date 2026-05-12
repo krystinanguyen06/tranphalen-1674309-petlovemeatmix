@@ -235,3 +235,45 @@ window.updateDetailPrice = function(weight, productId, element) {
     element.classList.add('active');
 };
 
+
+//SHOPPING CART PAGE
+//Use local storage
+window.addtoCart = function(productId) {
+    //Get information of the current chosen product
+    const product = products.find(p => p.id === productId);
+
+    //Get information input of the chosen weight and quantity
+    let selectedSize = "200g";
+    const activeCard = document.querySelector('.weight-card.active');
+    if(activeCard) {
+        selectedSize = activeCard.querySelector('weight-label').innerText;
+    }
+
+    const quantity = parseInt(document.getElementById('current-qty')?.innerText || 1);
+
+    //Structure chosen product to save to the shopping cart
+    const cartItem = {
+        id: product.id,
+        name: product.name,
+        image: product.image, 
+        size: selectedSize,
+        qty: quantity,
+        price: product.options[selectedSize].price
+    };
+
+    //Use localStorage to get the current shopping cart
+    //JSON turns objects/array into strings
+    let cart = JSON.parse(localStorage.getItem('petLoveCart')) || [];
+
+    //Check if the product with the same id and same size is in the cart already, then just increase the quantity
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id && item.size === cartItem.size);
+    if (existingIndex >-1) {
+        cart[existingIndex].qty += quantity;
+    } else {
+        cart.push(cartItem);
+    }
+
+    //Save back to localStorage
+    localStorage.setItem('petLoveCart', JSON.stringify(cart));
+    alert("Added to cart!");
+};
