@@ -76,8 +76,8 @@ const products = [
         image: "assets/chicken-500g.jpeg",
         //price changes according to product weight
         options: {
-            "200g": {price: 3.8, unitPrice: 1.9},
-            "500g": {price: 9, unitPrice: 1.8},
+            "200g": {price: 3.8, unitPrice: 1.90},
+            "500g": {price: 9, unitPrice: 1.80},
             "1kg": {price: 16.5, unitPrice: 1.65},
             "2kg": {price: 32, unitPrice: 1.00},
         }
@@ -161,7 +161,7 @@ function renderProduct(product) {
 
     </div>
     `;
-}
+};
 
 //Function to display function that renders product data
 function displayProducts(productsToDisplay) {
@@ -172,7 +172,7 @@ function displayProducts(productsToDisplay) {
         if (countText) countText.innerText = `Showing ${productsToDisplay.length} products`;
         grid.innerHTML = productsToDisplay.map(product => renderProduct(product)).join('');
     }
-}
+};
 
 //Run the displayProducts function immediately when the page loads.
     displayProducts(products);
@@ -210,4 +210,28 @@ if (detailName) {
             `).join('');
         }
     }
-}
+};
+
+//Product details page logic
+//Quantity stepper
+let currentQuantity = 1;
+window.changeQty = function(amount) {
+    currentQuantity += amount;
+    if (currentQuantity < 1) currentQuantity = 1;
+    const qtyDisplay = document.getElementById('current-qty');
+    if (qtyDisplay) qtyDisplay.innerText = currentQuantity;
+};
+
+//Update price when choose the product weight in the product details page
+window.updateDetailPrice = function(weight, productId, element) {
+    const product = products.find(p => p.id === productId);
+    const option = product.options[weight];
+
+    //Update visible price
+    document.getElementById('display-price').innerText = `$${option.price}`;
+
+    //Change style for the weight card being chosen
+    document.querySelectorAll('.weight-card').forEach(card => card.classList.remove('active'));
+    element.classList.add('active');
+};
+

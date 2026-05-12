@@ -255,3 +255,29 @@ section {
   gap: 8px;
   cursor: pointer;
 }
+
+/* PRODUCT DETAILS PAGE */
+.product-details {
+  text-align: left;
+
+}
+#product-image {
+  max-width: 700px;
+}
+
+.weight-cards-flex {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.weight-card {
+  border-radius: 15px;
+  border: 2px solid var(--plum);
+  padding: 5px;
+  margin: 2px;
+}
+
+.weight-card:hover {
+  background-color: var(--cream);
+}
