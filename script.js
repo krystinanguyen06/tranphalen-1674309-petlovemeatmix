@@ -237,6 +237,26 @@ window.updateDetailPrice = function(weight, productId, element) {
 
 
 //SHOPPING CART PAGE
+
+function renderCartP(){
+    const cartContainer = document.getElementById('cart-items');
+    const cart = loadCartData(); //To get real data from previous options from the users
+
+    if (cart.length === 0) {
+        cartContainer.innerHTML = `
+        <div class="empty-cart">
+            <p>Your cart is empty</p>
+            <a href="product-list.html">Continue shopping</a>
+        </div>`;
+    updateCartTotal(0);
+    return;
+    }
+}
+
+//Render products on the cart
+cartContainer.innerHTML = cart.map((item, index) => `
+    <div `)
+
 //Use local storage
 window.addtoCart = function(productId) {
     //Get information of the current chosen product
@@ -277,3 +297,12 @@ window.addtoCart = function(productId) {
     localStorage.setItem('petLoveCart', JSON.stringify(cart));
     alert("Added to cart!");
 };
+
+//Take the real input from the users' actions
+
+function loadCartData() {
+    const savedCart = localStorage.getItem('petLoveCart');
+    return savedCart ? JSON.parse(savedCart) : [];
+}
+
+
