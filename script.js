@@ -152,7 +152,12 @@ function renderProduct(product) {
             </div>
         </div>
 
+        <div class="product-actions">
+            <button>
+                <a href="product-page.html?id=${product.id}" class="view-btn">View product</a>
+            </button>
             <button class="quick-add">Quick add</button>
+        </div>
 
     </div>
     `;
@@ -173,8 +178,36 @@ function displayProducts(productsToDisplay) {
     displayProducts(products);
 
 //PRODUCT DETAILS PAGE
-const detailContainer = document.getElementById('display-name');
-if (detailContainer) {
+//Check if users are in the product details page 
+const detailName = document.getElementById('display-name');
 
+if (detailName) {
+    //Read product id from url link
+    const params = new URLSearchParams(window.location.search);
+    const productId = parseInt(params.get('id'));
+
+    //Find products in the string products
+    const product = products.find(p => p.id === productId);
+
+    if (product) {
+        detailName.innerText = product.name;
+        document.getElementById('product-image').src = product.image;
+        document.getElementById('display-tag').innerText = product.tags[0];
+        document.getElementById('display-stock').innerText = `${product.stock}kg left this week`;
+
+        //Set up default price
+        document.getElementById('display-price').innerText = `$${product.options["200g"].price}`;
+
+        //Render weight option card
+        const weightContainer = document.getElementById('weight-options-container');
+        if (weightContainer) {
+            weightContainer.innerHTML = Object.keys(product.options).map((weight, index) => `
+                <div class="weight-card ${index === 0? 'active' : ''}"
+                    onclick = "updateDetailPrice('${weight}', ${product.id}, this)">
+                    <div class="weight-label">${weight}</div>
+                    <div class="weight-unit">(${product.options[weight].unitPrice}/100g)</div>
+                </div>
+            `).join('');
+        }
+    }
 }
-
