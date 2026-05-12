@@ -165,8 +165,61 @@ section {
   object-fit: contain;
 }
 
+/* HERO SECTION */
+.hero-section {
+  padding: 0px;
+}
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--beige);
+  width: 100%;
+  padding: 0px;
+  margin: 0px;
+}
 
+.hero-content {
+  flex: 1;
+  text-align: left;
+  margin-left: 150px;
+}
 
+.hero-content h1 {
+  font-size: 3.5rem;
+}
+
+.hero-img {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.large-btn {
+  display: inline-block;
+  background-color: var(--cream);
+  color: var(--plum);
+  font-family: var(--font-heading);
+  border-radius: 60px;
+  text-decoration: none;
+  font-size: 1.8rem;
+  border: none;
+  cursor: pointer;
+  padding: 10px 40px 10px 40px;
+  margin-top: 20px;
+}
+
+.hero p {
+  font-size: 1.4rem;
+}
+
+.large-btn:hover {
+  background-color: var(--plum);
+  color: var(--cream);
+  font-size: 1.9rem;
+  transition: all 0.3s ease;
+}
 
 
 
