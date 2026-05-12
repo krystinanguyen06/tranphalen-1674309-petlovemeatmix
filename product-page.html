@@ -100,55 +100,60 @@
          </nav>
     </header>
     <!--PRODUCT PAGE-->
-    <nav class="breadcrumb">
+    <main>
+        <nav class="breadcrumb">
         <a href="index.html">Home</a> 
         > <a href="product-list.html">Shop All</a> 
         > <a href="#">Meat Mix</a>
         > <span>Duck Meat Mix</span>
-    </nav>
+        </nav>
 
-    <section class="product-section">
-        <div id="product-image"></div>
-
-        <div class="product-details-container">
-            <h1 class="product-name" id="display-name"></h1>
-            <div class="product-tag" id="display-tag"></div>
-            <p class="product description" id="display-description"></p>
-            <div class="weight-options"
-        </div>
-
-
-    <main>
-        <img src="" alt="Duck Meat Mix" class="product-hero">
-        <h2>Duck Meat Mix</h2>
-        <span class="tag">Poultry for gentle digestion</span>
-        <p class="description">
-            Made by hand, fresh every week, there are no preservatives or additives in our product.
-        </p>
-        <section class="size-options">
-            <button class="size-btn active">200g <span>($1.90/100g)</span></button>
-            <button class="size-btn active">500g <span>($1.80/100g)</span></button>
-            <button class="size-btn active">1000g <span>($1.65/100g)</span></button>
-            <button class="size-btn active">2000g <span>($1.00/100g)</span></button>
-        </section>
-        <!--action buttons-->
-        <div class="purchase-row">
-            <div class="quantity-selector">
-                <button>-</button>
-                <span>1</span>
-                <button>+</button>
+        <section class="product-section">
+            <div class="product-gallery">
+                <img id="product-image" src="" alt="">
             </div>
-            <span class="stock-info">20kg left this week</span>
-            <span class="price">$3.8</span>
-        </div>
-        <button class="addtocart-btn"><a href="cart.html">Add to cart</a></button>
-        <section class="ingredients">
-            <h3>Ingredients</h3>
-            <p>Pet Love Meat Mix is filled with the goodness of fresh raw meat, carrots, celery, zucchini, red capsicum, beetroot, parsley, garlic, lecithin, kelp, cold-pressed honey, brewers yeast, linseed meal, sesame seeds, chia seeds, psyllium husk, coconut, wholegrains including brown rice, oats, bulgar wheat, corn meal, barley, rye and some olive oil added for good measure.</p>
+
+            <div class="product-details">
+                <h1 id="display-name"></h1>
+                <p id="display-tag" class="tag"></p>
+                <p id="display-description" class="sub-text"></p>
+
+                <div class="weight-selection-area">
+                    <div id="weight-options-container" class="weight-cards-flex"></div>
+                </div>
+
+                <div class="price-row">
+                    <div class="quantity-stepper">
+                        <button onclick="changeQty(-1)">-</button>
+                        <span id="current-qty">1</span>
+                        <button onclick="changeQty(1)">+</button>
+                    </div>
+                    
+                    <div class="stock-status">
+                        <span id="display-stock"></span>
+                    </div>
+                    
+                    <div class="price-final">
+                        <span id="display-price"></span>
+                    </div>
+
+                    <div class="price-final">
+                        <span id="display-price"></span>
+                    </div>
+
+                </div>
+
+                <button class="add-to-cart-btn">Add to cart</button>
+
+                <div class="ingredients-area">
+                    <h3>Ingredients</h3>
+                    <p id="display-ingredients"></p>
+                </div>
+            </div>
         </section>
     </main>
+    
     <!--Link to JS script--> 
-    <script src="product-data.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
