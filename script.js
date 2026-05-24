@@ -56,7 +56,7 @@ const products = [
         id: 3,
         name: "Beef Meat Mix",
         category: "meatmix", 
-        tags: ["high energy"],
+        tags: ["High energy"],
         stock: 20, //kg
         image: "assets/beef-200g.jpeg",
         //price changes according to product weight
@@ -71,7 +71,7 @@ const products = [
         id: 4,
         name: "Chicken Meat Mix",
         category: "meatmix", 
-        tags: ["gentle digestion"],
+        tags: ["Gentle digestion"],
         stock: 20, //kg
         image: "assets/chicken-500g.jpeg",
         //price changes according to product weight
@@ -88,10 +88,11 @@ const products = [
         id: 5,
         name: "Small Dog Treat Pack",
         category: "treats", 
-        tags: ["high energy"],
+        tags: ["High energy"],
         stock: 15, //kg
         image: "assets/small-pack.jpeg",
         //no object options, create flat properties
+        treatTypes: 14,
         price: 20,
     },
 
@@ -99,10 +100,11 @@ const products = [
         id: 6,
         name: "Large Dog Treat Pack",
         category: "treats", 
-        tags: ["high energy"],
+        tags: ["High energy"],
         stock: 15, //kg
         image: "assets/large-pack.jpeg",
         //no object options, create flat properties
+        treatTypes: 22,
         price: 30,
     },
 ]
@@ -111,67 +113,74 @@ const products = [
 window.updatePrice = function(selectElement, productId) {
     //find data based on id
     const product = products.find(p => p.id === productId);
+    if (!product || !product.options) return;
+    //find card containing options
     const selectedWeight = selectElement.value;
     const option = product.options[selectedWeight];
-
-    //find card containing options
-    const card = selectElement.closest('.product-card');
-
+    const card = selectElement.closest('.product-list-card');
     //Update accordingly price
-    const mainPriceEl = card.querySelector('.main-price');
-    const unitPriceEl = card.querySelector('.unit-price');
-
-    mainPriceEl.innerText = `$${option.price}`;
-    unitPriceEl.innerText = `($${option.unitPrice}/100g)`;
-
+    if (card) {
+        const mainPriceEl = card.querySelector('.main-price');
+        const unitPriceEl = card.querySelector('.unit-price');
+        mainPriceEl.innerText = `$${option.price.toFixed(2)}`;
+        unitPriceEl.innerText = `($${option.unitPrice.toFixed(2)}/100g)`;
+    }
 };
 
 // Render function for product list in HTML template
 function renderProduct(product) {
+    let purchaseAreaHtml ="";
+    let mainPrice = 0;
+    let unitPriceHtml = "";
+    let stockText = "";
 
-    //Product price and unit price need to be changed according to the product size
-    //Hence, I need to set up a default weight, then get its price from product.options and display that accordingly
-    //Set up default weight
-    const defaultWeight = "200g";
-    const selectedOption = product.options[defaultWeight];
+        //render product price and information flexibly for different product categories
+        // if else function to render either meat mix or treats
+        if (product.category === "meatmix") {
+            const defaultWeight = "200g";
+            const selectedOption = product.options[defaultWeight];
+            mainPrice = selectedOption.price;
+            unitPriceHtml = `<span class="unit-price">($${selectedOption.unitPrice.toFixed(2)}/100g)</span>`;
+            stockText = `${product.stock}kg left`;
+        
 
-    //
-    return `
-    <div class="product-card" data-id="${product.id}">
-
-        <img src="${product.image}" alt="${product.name}">
-
-        <div class="stock-boxes">
-            <div class="stock-box">${product.stock}kg left</div>
-        </div>
-
-        <div class="product-tags">
-            ${product.tags.map(tag => 
-                `<span class="tag">${tag}</span>`
-            ).join('')}
-        </div>
-
-        <h3>${product.name}</h3>
-
-        <div class="purchase-area">
-            <select class="weight-select" 
-                onchange="updatePrice(this, ${product.id})">
-
+        purchaseAreaHtml = `
+            <select class="weight-select" onchange="updatePrice(this, ${product.id})">
                 <option value="200g">200g</option>
                 <option value="500g">500g</option>
                 <option value="1kg">1kg</option>
                 <option value="2kg">2kg</option>
-
             </select>
+        `;
+    } else if (product.category === "treats") {
+        mainPrice = product.price;
+        unitPriceHtml = "";
+        stockText = `${product.stock} packs left`;
+        purchaseAreaHtml = `
+            <span class="fixed-weight-badge">${product.treatTypes} types of treats </span>
+        `;
+    }
 
+    return `
+    <div class="product-list-card" data-id="${product.id}">
+        <div class="product-image-container">
+            <img src="${product.image}" alt=${product.name}">
+            <div class="product-tags">
+                ${product.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+            </div>
+        </div>
+        
+        <h3>${product.name}</h3>
+
+        <div class="stock-boxes">
+            <div class="stock-boxes">${stockText}</div>
+        </div>
+        
+        <div class="purchase-area">
+            ${purchaseAreaHtml}
             <div class="price-display">
-                <span class="main-price">
-                    ${selectedOption.price}
-                </span>
-
-                <span class="unit-price">
-                    ($${selectedOption.unitPrice}/100g)
-                </span>
+                <span class="main-price">$${mainPrice.toFixed(2)}</span>
+                ${unitPriceHtml}
             </div>
         </div>
 
@@ -179,12 +188,11 @@ function renderProduct(product) {
             <button>
                 <a href="product-page.html?id=${product.id}" class="view-btn">View product</a>
             </button>
-            <button class="quick-add">Quick add</button>
+            <button class="quick-add" onclick="window.addtoCart(${product.id})">Quick add</button>
         </div>
-
     </div>
     `;
-};
+}
 
 //Function to display function that renders product data
 function displayProducts(productsToDisplay) {
@@ -197,8 +205,29 @@ function displayProducts(productsToDisplay) {
     }
 };
 
-//Run the displayProducts function immediately when the page loads.
-    displayProducts(products);
+//Function to set up the change event in the tab folder
+function setupTabEvents() {
+    const tabs = document.querySelectorAll('.tab-btn');
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            tabs.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+
+            const selectedCategory = tab.getAttribute('data-category');
+            const filterProducts = products.filter(p => p.category === selectedCategory);
+            displayProducts(filterProducts);
+        });
+    });
+}
+
+//Default options when load page
+document.addEventListener('DOMContentLoaded', () => {
+    if (document.getElementById('product-grid')) {
+        const initialProducts = products.filter(p => p.category === "meatmix");
+        displayProducts(initialProducts);
+        setupTabEvents(); 
+    }
+});
 
 //PRODUCT DETAILS PAGE
 //Check if users are in the product details page 
