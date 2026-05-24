@@ -81,10 +81,33 @@ const products = [
             "1kg": {price: 16.5, unitPrice: 1.65},
             "2kg": {price: 32, unitPrice: 1.00},
         }
-    }
+    },
+
+    //Treats data
+    {
+        id: 5,
+        name: "Small Dog Treat Pack",
+        category: "treats", 
+        tags: ["high energy"],
+        stock: 15, //kg
+        image: "assets/small-pack.jpeg",
+        //no object options, create flat properties
+        price: 20,
+    },
+
+    {
+        id: 6,
+        name: "Large Dog Treat Pack",
+        category: "treats", 
+        tags: ["high energy"],
+        stock: 15, //kg
+        image: "assets/large-pack.jpeg",
+        //no object options, create flat properties
+        price: 30,
+    },
 ]
 
-// Update price according to weight 
+// Update price according to weight just for meat mix page
 window.updatePrice = function(selectElement, productId) {
     //find data based on id
     const product = products.find(p => p.id === productId);

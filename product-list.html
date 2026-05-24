@@ -110,21 +110,6 @@
                     
             <!--Filtering and sorting function are on the side bar next to product list-->
             <aside class="product-sidebar">
-                <!--Product list changes according to chosen category tab-->
-                <div class="tabs-container">
-                    <!--Active tab is selected by default-->
-                    <button class="tab-btn active" data-category="meatmix"><h3>MEAT MIX</h3></button>
-                    <button class="tab-btn" data-category="treats"><h3>TREATS</h3></button>
-                </div>
-
-                <!--Results count-->
-                <div class="results-count-container">
-                    <span id="product-count" class="count-text">
-                        Showing 0 products <!--0 for default, change later in JS-->
-                    </span>
-                </div>
-
-                <hr> <!--Create a horizontal line-->
 
                 <label>Filtering</label>
                     <div class="filter-group">
@@ -132,8 +117,6 @@
                         <label><input type="checkbox" class="tag-filter" value="High energy">High energy</label>
                         <label><input type="checkbox" class="tag-filter" value="Hypoallergenic">Hypoallergenic</label>
                     </div>
-
-                <hr> <!--Create a horizontal line-->
                         
                 <div class="filterandsort-group">
                     <label>Sort by:</label>
@@ -148,8 +131,29 @@
             </aside>
 
             <div class="product-list-grid">
-                <!--HTML template will be filled from JS function-->
-                <div id="product-grid" class="product-row-grid"></div>
+                <!--Product list changes according to chosen category tab-->
+                <div class="products-nav-bar">
+
+                    <div class="tabs-container">
+                        <!--Active tab is selected by default-->
+                        <button class="tab-btn active" data-category="meatmix"><h3>MEAT MIX</h3></button>
+                        <button class="tab-btn" data-category="treats"><h3>TREATS</h3></button>
+                    </div>
+                </div>
+
+                <div class="folder-content-box">
+                    <!--Results count-->
+                    <div class="results-count-container">
+                        <span id="product-count" class="count-text">
+                            Showing 0 products <!--0 for default, change later in JS-->
+                        </span>
+                    </div>
+                
+                    <!--HTML template will be filled from JS function-->
+                    <div id="product-grid" class="product-row-grid"></div>
+
+                </div>
+                
             </div>
 
         </section>

@@ -221,6 +221,69 @@ section {
   transition: all 0.3s ease;
 }
 
+/* PRODUCTS ON HOMEPAGE */
+.products-section {
+  background-color: var(--plum);
+  width: 100%;
+  padding: 0px;
+  margin: 0px;
+}
+
+.products-section h2 {
+  color: var(--beige);
+  font-size: 2.5rem;
+  margin: 30px;
+}
+
+.product-grid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  margin: 20px;
+  margin-top: 0px;
+  padding-top: 0px;
+  
+}
+
+.product-grid img {
+  width: 100%;
+  height:auto;
+  max-width: 300px;
+  border-radius: 30px;
+  border: none;
+  margin-bottom: 20px;
+}
+
+.product-card {
+  padding: 20px;
+  background-color: var(--beige);
+  margin: 20px;
+  display: grid;
+  border-radius: 50px;
+  border: none;
+}
+
+.medium-btn {
+  display: inline-block;
+  background-color: var(--skyblue);
+  color: var(--plum);
+  font-family: var(--font-heading);
+  border-radius: 60px;
+  text-decoration: none;
+  font-size: 1.4rem;
+  border: none;
+  cursor: pointer;
+  padding: 8px 36px 8px 36px;
+  margin-top: 16px;
+}
+
+.medium-btn:hover {
+  background-color: var(--plum);
+  color: var(--skyblue);
+  font-size: 1.4rem;
+  transition: all 0.3s ease;
+}
 
 
 
@@ -234,6 +297,7 @@ section {
   gap: 40px;
   max-width: 1200px;
   margin: 0 auto;
+  padding: 20px;
 }
 
 /* Left aside bar */
@@ -243,41 +307,57 @@ section {
   flex-direction: column;
   align-items: flex-start;
   text-align: left;
+  padding-top: 45px;
 }
 
+/* right grid area */
+.product-list-grid {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.results-count-container {
+  text-align: right;
+}
+
+/* tab folder */
+.products-nav-bar {
+  display: flex;
+  width: 100%;
+  margin-bottom: 0px;
+}
 /* Tabs container */
 .tabs-container {
   display: flex;
-  flex-direction: column;
-  gap: 10px;
+  flex-direction: row;
   width: 100%;
   margin-bottom: 20px;
 }
 
 .tab-btn {
   border: none; 
-  background: var(--beige);
+  background: var(--skyblue);
+  color: var(--plum);
   padding: 10px 15px;
-  border-radius: 8px;
+  border-radius: 20px 20px 0 0;
   cursor: pointer;
-  text-align: left;
+  text-align: center;
   width: 100%;
   transition: 0.3s;
+  cursor: pointer;
+  transition: 0.3s ease;
 }
 
 .tab-btn.active {
   background-color: var(--cream);
-  color: white;
+  color: var(--plum);
+  z-index: 2;
 }
 
 .tab-btn h3 {
   margin: 0;
-  font-size: 1rem;
-}
-
-/* Right aligned product grid */
-.product-list-grid {
-  flex: 1;
+  font-size: 1.2rem;
 }
 
 .product-row-grid {
