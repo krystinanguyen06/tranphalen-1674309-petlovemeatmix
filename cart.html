@@ -101,41 +101,34 @@
     </header>
     <!--Shopping cart-->
     <main class="cart-page">
-        <nav class="breadcrumb">
-            <a href="index.html">Home</a>
-            > <span><a href="cart.html">Shopping cart</a></span>
-        </nav>
-        <h1>Shopping cart</h1>
+        <section class="page-overview">
+            <nav class="breadcrumb">
+                <a href="index.html">Home</a> 
+                > <a href="product-list.html">Shop All</a> 
+                > <a href="cart.html">Shopping cart</a>
+            </nav>
+        </section>
 
-        <hr>
+        <section class="page-overview">
+            <h1>Shopping cart</h1>
+            <hr class="divider">
+        </section>
 
-        <div class="cart-container">
-            <div id="cart-items" class="cart-item-list">
+        <section class="product-section">
+            <div id="cart-items" class="cart-item-list"></div>
 
+            <div class="cart-summary">
+                <div class="summary-row">
+                    <span class="total-label">TOTAL:</span>
+                    <span id="cart-total-price" class="total-amount">$0.00</span>
+                </div>
+                <div class="summary-actions">
+                    <a href="product-list.html" class="btn-back">Shop All</a>
+                    <button class="btn-checkout">Check-out</button>
+                </div>
             </div>
-        </div>
-
-        <div class="cart-summary">
-            <div class="summary-row">
-                <span class="total-label">TOTAL</span>
-                <span id="cart-total-price" class="total-amount>$0.00"></span>
-            </div>
-            <div class="summary-actions">
-                <button class="btn-back" onclick="window.history.back()">Back</button>
-                <button class="btn-checkout">Check-out</button>
-            </div>
-        </div>
-
+        </section>
     </main>
-    <!--Footer-->
-    <footer>
-        <div class="footer-links">
-            <a href="product-list.html">Shop All</a>
-            <a href="">Terms & Conditions</a>
-        </div>
-        <p>0413 320 173</p>
-        <br>
-        <p>329 Moreland Road, Coburg, VIC, 3058</p>
-    </footer>
     <script href="script.js"></script>
 </body>
+</html>
