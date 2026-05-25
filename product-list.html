@@ -107,13 +107,20 @@
                 Made by hand, fresh everyweek, there are no preservatives or additives in our products.     
             </p>
             <hr>
-            <br>
         </section>
 
         <section class="product-section">
                     
             <!--Filtering and sorting function are on the side bar next to product list-->
             <aside class="product-sidebar">
+                <!--Product list changes according to chosen category tab-->
+                <div class="products-nav-bar">
+                    <div class="tabs-container">
+                        <!--Active tab is selected by default-->
+                        <button class="tab-btn active" data-category="meatmix"><h3>MEAT MIX</h3></button>
+                        <button class="tab-btn" data-category="treats"><h3>TREATS</h3></button>
+                    </div>
+                </div>
 
                 <label>Filtering</label>
                     <div class="filter-group">
@@ -135,16 +142,6 @@
             </aside>
 
             <div class="product-list-grid">
-                <!--Product list changes according to chosen category tab-->
-                <div class="products-nav-bar">
-
-                    <div class="tabs-container">
-                        <!--Active tab is selected by default-->
-                        <button class="tab-btn active" data-category="meatmix"><h3>MEAT MIX</h3></button>
-                        <button class="tab-btn" data-category="treats"><h3>TREATS</h3></button>
-                    </div>
-                </div>
-
                 <div class="folder-content-box">
                     <!--Results count-->
                     <div class="results-count-container">
@@ -155,9 +152,7 @@
                 
                     <!--HTML template will be filled from JS function-->
                     <div id="product-grid" class="product-row-grid"></div>
-
                 </div>
-                
             </div>
 
         </section>

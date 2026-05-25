@@ -1,24 +1,3 @@
-/**Dropdown toggle list icon animation
-const dropdownToggle = document.querySelector('.dropdown-toggle');
-const dropdownMenu = document.querySelector('.dropdown-menu');
-
-dropdownToggle.addEventListener('click', (event) => {
-    event.stopPropagation(); // Prevent the click event from bubbling up to the document
-    
-    // Toggle class 'active' for the css animation to change and up and down icon
-    dropdownToggle.classList.toggle('active');
-
-    // Toggle the visibility of the dropdown menu
-    if (dropdownMenu.style.display = 'block') {
-        dropdownMenu.style.display = 'none';
-    } else {
-        dropdownMenu.style.display = 'block';
-    }
-});
-**/
-
-
-
 // PRODUCT LIST PAGE
 // 1. Product data
 const products = [
@@ -164,7 +143,7 @@ function renderProduct(product) {
     return `
     <div class="product-list-card" data-id="${product.id}">
         <div class="product-image-container">
-            <img src="${product.image}" alt=${product.name}">
+            <img src="${product.image}" alt="${product.name}">
             <div class="product-tags">
                 ${product.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
             </div>
@@ -172,9 +151,7 @@ function renderProduct(product) {
         
         <h3>${product.name}</h3>
 
-        <div class="stock-boxes">
-            <div class="stock-boxes">${stockText}</div>
-        </div>
+        <div class="stock-boxes">${stockText}</div>
         
         <div class="purchase-area">
             ${purchaseAreaHtml}
@@ -242,13 +219,16 @@ if (detailName) {
     const product = products.find(p => p.id === productId);
 
     if (product) {
-        detailName.innerText = product.name;
+        currentProductData = product;
+        detailName.innerText = product.name; //fix to multiply with stepper quantity
         document.getElementById('product-image').src = product.image;
         document.getElementById('display-tag').innerText = product.tags[0];
-        document.getElementById('display-stock').innerText = `${product.stock}kg left this week`;
-
+        
         //Set up default price
-        document.getElementById('display-price').innerText = `$${product.options["200g"].price}`;
+        if (product.category === "meatmix") {
+            document.getElementById('display-stock').innerText = `${product.stock}kg left this week`;
+            document.getElementById('display-price').innerText = `$${product.options["200g"].price.toFixed(2)}`;
+        }
 
         //Render weight option card
         const weightContainer = document.getElementById('weight-options-container');
@@ -260,6 +240,14 @@ if (detailName) {
                     <div class="weight-unit">(${product.options[weight].unitPrice}/100g)</div>
                 </div>
             `).join('');
+        }
+    } else {
+        //Treats in details page
+        document.getElementById('display-stock').innerText = `${product.stock} packs left this week`;
+        document.getElementById('display-price').innerText = `$${product.price.toFixed(2)}`;
+        const weightContainer = document.getElementById('weight-options-container');
+        if (weightContainer) {
+            weightContainer.innerHTML = `<div class="fixed-weight-badge active"`;
         }
     }
 };

@@ -101,12 +101,14 @@
     </header>
     <!--PRODUCT PAGE-->
     <main>
-        <nav class="breadcrumb">
-        <a href="index.html">Home</a> 
-        > <a href="product-list.html">Shop All</a> 
-        > <a href="#">Meat Mix</a>
-        > <span>Duck Meat Mix</span>
-        </nav>
+        <section class="page-overview">
+            <nav class="breadcrumb">
+                <a href="index.html">Home</a> 
+                > <a href="product-list.html">Shop All</a> 
+                > <a href="product-list.html?category=meatmix">Meat Mix</a>
+            </nav>
+            <hr class="divider">
+        </section>
 
         <section class="product-section">
             <div class="product-gallery">
@@ -116,10 +118,16 @@
             <div class="product-details">
                 <h1 id="display-name"></h1>
                 <p id="display-tag" class="tag"></p>
-                <p class="sub-text">Made by hand, fresh every week, there are no preservatives or additives in our product.</p>
+                <p class="sub-text">
+                    Made by hand, fresh everyweek, there are no preservatives or additives in our products.     
+                </p>
 
                 <div class="weight-selection-area">
                     <div id="weight-options-container" class="weight-cards-flex"></div>
+                </div>
+
+                <div class="stock-status">
+                        <span id="display-stock"></span>
                 </div>
 
                 <div class="price-row">
@@ -129,28 +137,32 @@
                         <button onclick="changeQty(1)">+</button>
                     </div>
                     
-                    <div class="stock-status">
-                        <span id="display-stock"></span>
-                    </div>
-                    
-                    <div class="price-final">
-                        <span id="display-price"></span>
-                    </div>
-
                     <div class="price-final">
                         <span id="display-price"></span>
                     </div>
 
                 </div>
 
-                <button class="add-to-cart-btn">Add to cart</button>
+                <div class="action-buttons-row">
+                    <a href="product-list.html" class="back-btn">Back to Shop</a>
+                    <button class="add-to-cart-btn">Add to cart</button>
+                </div>
+
+                <hr class="divider">
 
                 <div class="ingredients-area">
                     <h3>Ingredients</h3>
                     <p>Pet Love Meat Mix is filled with the goodness of fresh raw meat, carrots, celery, zucchini, red capsicum, beetroot, parsley, garlic, lecithin, kelp, cold-pressed honey, brewers yeast, linseed meal, sesame seeds, chia seeds, psyllium husk, coconut, wholegrains including brown rice, oats, bulgar wheat, corn meal, barley, rye and some olive oil added for good measure.</p>
                 </div>
-            </div>
+            </div>            
         </section>
+
+        <hr class="page-overview divider">
+        
+        <div class="linear-navigation-row">
+            <button id="prev-product-btn" class="nav-arrow-btn prev">Previous product</button>
+            <button id="next-product-btn" class="nav-arrow-btn next">Next product</button>
+        </div>
     </main>
 
     <!--Link to JS script--> 
