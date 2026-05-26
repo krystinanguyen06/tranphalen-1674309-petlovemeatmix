@@ -131,6 +131,7 @@ function renderProduct(product) {
                 <option value="2kg">2kg</option>
             </select>
         `;
+
     } else if (product.category === "treats") {
         mainPrice = product.price;
         unitPriceHtml = "";
@@ -204,6 +205,11 @@ document.addEventListener('DOMContentLoaded', () => {
         displayProducts(initialProducts);
         setupTabEvents(); 
     }
+
+    //if user is in shopping cart page then render shopping cart
+    if (document.getElementById('cart-items')) {
+        renderCart();
+    }
 });
 
 //PRODUCT DETAILS PAGE
@@ -219,37 +225,41 @@ if (detailName) {
     const product = products.find(p => p.id === productId);
 
     if (product) {
-        currentProductData = product;
-        detailName.innerText = product.name; //fix to multiply with stepper quantity
+        //save current products to variable window so that the function add to cart can read it later
+        window.currentProductId = product.id;
+
+        detailName.innerText = product.name;
         document.getElementById('product-image').src = product.image;
         document.getElementById('display-tag').innerText = product.tags[0];
-        
+
         //Set up default price
         if (product.category === "meatmix") {
             document.getElementById('display-stock').innerText = `${product.stock}kg left this week`;
             document.getElementById('display-price').innerText = `$${product.options["200g"].price.toFixed(2)}`;
-        }
 
-        //Render weight option card
-        const weightContainer = document.getElementById('weight-options-container');
-        if (weightContainer) {
-            weightContainer.innerHTML = Object.keys(product.options).map((weight, index) => `
-                <div class="weight-card ${index === 0? 'active' : ''}"
-                    onclick = "updateDetailPrice('${weight}', ${product.id}, this)">
-                    <div class="weight-label">${weight}</div>
-                    <div class="weight-unit">(${product.options[weight].unitPrice}/100g)</div>
-                </div>
-            `).join('');
-        }
-    } else {
+            //Render weight option card
+            const weightContainer = document.getElementById('weight-options-container');
+            if (weightContainer) {
+                weightContainer.innerHTML = Object.keys(product.options).map((weight, index) => `
+                    <div class="weight-card ${index === 0? 'active' : ''}"
+                        onclick = "updateDetailPrice('${weight}', ${product.id}, this)">
+                        <div class="weight-label">${weight}</div>
+                        <div class="weight-unit">(${product.options[weight].unitPrice}/100g)</div>
+                    </div>
+                `).join('');
+            }
+        
+        } else if (product.category === "treats") {
         //Treats in details page
         document.getElementById('display-stock').innerText = `${product.stock} packs left this week`;
         document.getElementById('display-price').innerText = `$${product.price.toFixed(2)}`;
         const weightContainer = document.getElementById('weight-options-container');
         if (weightContainer) {
             weightContainer.innerHTML = `<div class="fixed-weight-badge active"`;
+            }
         }
-    }
+    } 
+    
 };
 
 //Product details page logic
@@ -275,74 +285,165 @@ window.updateDetailPrice = function(weight, productId, element) {
     element.classList.add('active');
 };
 
-
-//SHOPPING CART PAGE
-
-function renderCartP(){
+//Shopping cart
+function renderCart() {
     const cartContainer = document.getElementById('cart-items');
-    const cart = loadCartData(); //To get real data from previous options from the users
+    const cart = loadCartData(); //real data from localStorage
 
+    //If the cart is blank then show annoucement and suggest continue shopping
     if (cart.length === 0) {
         cartContainer.innerHTML = `
         <div class="empty-cart">
-            <p>Your cart is empty</p>
-            <a href="product-list.html">Continue shopping</a>
+            <p>Your cart is empty...</p>
+            <a href="product-list.html">Continue Shopping</a>
         </div>`;
-    updateCartTotal(0);
-    return;
+
+        //Set default total price to $0.00
+        const totalDisplay = document.getElementById('cart-total-price');
+        if (totalDisplay) totalDisplay.innerText = "$0.00";
+        return; //Return function, stop running the below code to render chosen products
+    }
+
+    //JavaScript loop through shopping cart
+    cartContainer.innerHTML = cart.map((item, index) => {
+
+        const originalProduct = products.find(p => p.id === item.id);
+        let sizeOptionsHTML = '';
+        let unitPriceText = '';
+        let currentItemPrice = currentOption.price;
+
+        if (originalProduct && originalProduct.category === "meatmix") {
+            sizeOptionsHTML = Object.keys(originalProduct.options).map(sizeKey => {
+                const isSelected = sizeKey === item.size ? 'selected' : '';
+                return `<option value="${sizeKey}" ${isSelected}>${sizeKey}</option>`;
+            }).join('');
+
+            const currentOption = originalProduct.options[item.size];
+            if (currentOption) {
+                unitPriceText = `($${currentOption.unitPrice}/100g)`;
+                currentItenPrice = currentOption.price;
+            }
+        } else {
+            sizeOptionsHTML = `<option value="${item.size}" selected>${item.size}</option>`;
+        }
+            
+        return `
+        <div class="cart-item-card">
+            <img src="${item.image}" alt="${item.name}" class="cart-item-img">
+
+            <div class="cart-item-details">
+                <div class="cart-item-header">
+                    <h3>${item.name}</h3>
+                    <button class="trash-delete-btn" onclick="removeProductFromCart(${index})" aria-label="Delete product">
+                    </button>
+                </div>
+                <div class="cart-size-row">
+                    <div class="cart-weight-wrapper">
+                        <select class="cart-weight-select" onchange="updateCartItemSize(${index}, this.value)">
+                            ${sizeOptionsHTML}
+                        </select>
+                        <div class="cart-unit-divider"></div>
+                        <div class="cart-unit-price-label">${unitPriceText}</div>
+                    </div>
+
+                    <div class="cart-qty-row">
+                        <div class="cart-stepper-container">
+                            <span class="cart-meta-label">Qty.:</span>
+                            <button class="cart-stepper-btn" onclick="updateCartItemQty(${index, -1},>-</button>
+                            <span class="cart-qty-value">${item/qty}</span>
+                            <button class="cart-stepper-btn" onclick="updateCartItemQty(${index, 1},>+</button>
+                        </div>
+                        
+                        <div class="cart-row-price-display">
+                            $${currentItemPrice.toFixed(2)}
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        `;
+
+    }).join('');
+
+    //Count total price for all products
+    let grandTotal = 0;
+    //Check cart
+    cart.forEach(item => {
+        grandTotal += (item.price * item.qty);
+
+    });
+
+    const totalPriceElement = document.getElementById('cart-total-price');
+    if (totalPriceElement) {
+        totalPriceElement.innerText = `$${grandTotal.toFixed(2)}`;
     }
 }
 
-//Render products on the cart
-cartContainer.innerHTML = cart.map((item, index) => `
-    <div `)
+//Function read data from the localStorage
+function loadCartData(){
+    const savedCart = localStorage.getItem('shoppingCart');
+    return savedCart ? JSON.parse(savedCart):[];
+}
 
-//Use local storage
-window.addtoCart = function(productId) {
-    //Get information of the current chosen product
-    const product = products.find(p => p.id === productId);
+//render shopping cart from the product details page
 
-    //Get information input of the chosen weight and quantity
+window.addDetailtoCart = function() {
+    //Check if the product details page has valid product id
+    if (!window.currentProductId) return;
+
+    const product = products.find(p => p.id === window.currentProductId);
+    if (!product) return;
+
     let selectedSize = "200g";
-    const activeCard = document.querySelector('.weight-card.active');
-    if(activeCard) {
-        selectedSize = activeCard.querySelector('weight-label').innerText;
+    let productPrice = product.price || 0;
+
+    //Take the chosen size based on the active class
+    if (product.category === "meatmix"){
+        const activeCard = document.querySelector('.weight-card.active');
+        if (activeCard) {
+            const labelEl = activeCard.querySelector('.weight-label');
+            if (labelEl) selectedSize = labelEl.innerText.trim();
+        }
+        productPrice = product.options[selectedSize].price;
+    } else {
+        selectedSize = "Standard";
     }
 
-    const quantity = parseInt(document.getElementById('current-qty')?.innerText || 1);
+    //Take quantity from the variable 'currentQuantity' of the quantity stepper 
+    const quantity = currentQuantity;
 
-    //Structure chosen product to save to the shopping cart
+    //Create product object for later local save
     const cartItem = {
         id: product.id,
         name: product.name,
-        image: product.image, 
-        size: selectedSize,
+        image: product.image,
+        size: selectedSize, 
         qty: quantity,
-        price: product.options[selectedSize].price
+        price: productPrice
     };
 
-    //Use localStorage to get the current shopping cart
-    //JSON turns objects/array into strings
-    let cart = JSON.parse(localStorage.getItem('petLoveCart')) || [];
-
-    //Check if the product with the same id and same size is in the cart already, then just increase the quantity
+    //Read the current shopping cart, check for the repeated quantity 
+    let cart = loadCartData();
     const existingIndex = cart.findIndex(item => item.id === cartItem.id && item.size === cartItem.size);
-    if (existingIndex >-1) {
+
+    if (existingIndex > -1) {
         cart[existingIndex].qty += quantity;
     } else {
         cart.push(cartItem);
     }
 
-    //Save back to localStorage
-    localStorage.setItem('petLoveCart', JSON.stringify(cart));
-    alert("Added to cart!");
+    //overwrite array to the localStorage
+    localStorage.setItem('shoppingCart', JSON.stringify(cart));
+    alert(`Added ${quantity}x ${product.name} (${selectedSize}) to cart successfully!`);
+
+    localStorage.setItem('shoppingCart', JSON.stringify(cart));
+
+    alert('Added ${quantity}x ${product.name} (${selectedSize}) to cart successfully!');
+
+    window.location.href="cart.html";
 };
 
-//Take the real input from the users' actions
 
-function loadCartData() {
-    const savedCart = localStorage.getItem('petLoveCart');
-    return savedCart ? JSON.parse(savedCart) : [];
-}
 
 
