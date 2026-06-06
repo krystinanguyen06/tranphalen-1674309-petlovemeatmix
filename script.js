@@ -321,7 +321,7 @@ function renderCart() {
             const currentOption = originalProduct.options[item.size];
             if (currentOption) {
                 unitPriceText = `($${currentOption.unitPrice}/100g)`;
-                currentItenPrice = currentOption.price;
+                currentItemPrice = currentOption.price;
             }
         } else {
             sizeOptionsHTML = `<option value="${item.size}" selected>${item.size}</option>`;
@@ -349,9 +349,9 @@ function renderCart() {
                     <div class="cart-qty-row">
                         <div class="cart-stepper-container">
                             <span class="cart-meta-label">Qty.:</span>
-                            <button class="cart-stepper-btn" onclick="updateCartItemQty(${index, -1},>-</button>
-                            <span class="cart-qty-value">${item/qty}</span>
-                            <button class="cart-stepper-btn" onclick="updateCartItemQty(${index, 1},>+</button>
+                            <button class="cart-stepper-btn" onclick="updateCartItemQty(${index}, -1),>-</button>
+                            <span class="cart-qty-value">${item.qty}</span>
+                            <button class="cart-stepper-btn" onclick="updateCartItemQty(${index}, 1),>+</button>
                         </div>
                         
                         <div class="cart-row-price-display">
