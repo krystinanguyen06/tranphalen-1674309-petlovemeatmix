@@ -841,19 +841,6 @@ select {
   border-radius: 15px;
 }
 
-.cart-item-details {
-
-}
-
-@media (max-width: 768px) {
-  /* Turn navbar to vertical column */
-  /* Product list responsive */
-  .page-overview {
-    text-align: center;
-    padding: 10px;
-  }
-
-  
-
-
+.hidden {
+  display: none !important;
 }

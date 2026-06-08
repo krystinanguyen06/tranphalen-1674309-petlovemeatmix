@@ -3,11 +3,11 @@
 const products = [
     {
         id: 1,
-        name: "Duck Meat Mix",
+        name: "Beef Meat Mix",
         category: "meatmix", 
-        tags: ["Gentle digestion"],
+        tags: ["High energy"],
         stock: 20, //kg
-        image: "assets/duck-2kg.jpeg",
+        image: "assets/beef-200g.jpeg",
         //price changes according to product weight
         options: {
             "200g": {price: 3.8, unitPrice: 1.9},
@@ -15,6 +15,7 @@ const products = [
             "1kg": {price: 16.5, unitPrice: 1.65},
             "2kg": {price: 32, unitPrice: 1.00},
         }
+        
     },
     {
         id: 2,
@@ -33,11 +34,11 @@ const products = [
     },
     {
         id: 3,
-        name: "Beef Meat Mix",
+        name: "Duck Meat Mix",
         category: "meatmix", 
-        tags: ["High energy"],
+        tags: ["Gentle digestion"],
         stock: 20, //kg
-        image: "assets/beef-200g.jpeg",
+        image: "assets/duck-2kg.jpeg",
         //price changes according to product weight
         options: {
             "200g": {price: 3.8, unitPrice: 1.9},
@@ -209,6 +210,10 @@ document.addEventListener('DOMContentLoaded', () => {
     //if user is in shopping cart page then render shopping cart
     if (document.getElementById('cart-items')) {
         renderCart();
+    }
+
+    if (document.getElementById('checkout-summary-list')) {
+        displayOrderSummary();
     }
 });
 
@@ -472,4 +477,142 @@ window.updateCartItemSize = function(index, newSize) {
 };
 
 
+// CHECKING OUT PAGE
 
+let shippingFee = 0;
+
+//1. Take data from shopping cart and render to the right-side summary list
+function displayOrderSummary() {
+    const listContainer = document.getElementById('checkout-summary-list');
+    const cart = loadCartData(); 
+    let subtotal=0;
+
+//Loop throught cart items and generate HTML with product images
+listContainer.innerHTML = cart.map(item => {
+    let itemTotal = item.price * item.qty;
+    subtotal += itemTotal;
+    return `
+        <div class="summary-product-card">
+            <img src="${item.image}" alt="${item.name}" class="summary-product-img">
+            <div class="summary-product-details">
+                <h4 class="summary-product-name">${item.name}</h4>
+                <p class="summary-product-meta">Size: ${item.size} | Qty: ${item.qty}</p>
+                <div class="summary-product-price-row">
+                    <span class="summary-product-price">$${itemTotal.toFixed(2)}</span>
+                    <a href="cart.html" class="summary-product-edit">Edit</a>
+                </div>
+            </div>
+        </div>
+    `;
+}).join('');
+
+//Calculated prices are place in the summary box
+document.getElementById('summary-subtotal').innerText = `$${subtotal.toFixed(2)}`;
+document.getElementById('summary-shipping').innerText = `$${shippingFee.toFixed(2)}`;
+document.getElementById('summary-total').innerText = `$${(subtotal + shippingFee).toFixed(2)}`;
+}
+
+//2. Toggle content between 3 steps (Accordion Effect)
+function openStep(stepNumber) {
+    //hide content sections of all 3 steps
+    document.getElementById('content-1').classList.add('hidden');
+    document.getElementById('content-2').classList.add('hidden');
+    document.getElementById('content-3').classList.add('hidden');
+
+    //Only show requested step
+    document.getElementById(`content-${stepNumber}`).classList.remove('hidden');
+}
+
+//3. Delivery method selection & calculate shipping fee
+function toggleDeliveryFields(){
+    const isPickup = document.getElementById('radio-pickup').checked;
+    const suburbInput = document.getElementById('suburb').value.trim().toLowerCase();
+
+    if (isPickup) {
+        document.getElementById('pickup-info').classList.remove('hidden');
+        document.getElementById('ship-info').classList.add('hidden');
+        shippingFee = 0;
+    } else {
+        document.getElementById('pickup-info').classList.add('hidden');
+        document.getElementById('ship-info').classList.remove('hidden');
+
+        //If suburb is "coburg" then shipping fee is $5, else standard $10
+        if (suburbInput === 'coburg') {
+            shippingFee = 5;
+            document.getElementById('shipping-note').innerText = "Shipping fee for Coburg area is $5.00";
+        } else {
+            shippingFee = 10;
+            document.getElementById('shipping-note').innerText = "Standard Shipping Fee is $10.00";
+        }
+    }
+    //Update final total fee
+    displayOrderSummary();
+}
+
+//4. Form Validation
+function validateAndNext(currentStep){
+    if (currentStep === 1) {
+        const firstName = document.getElementById('first-name').value.trim();
+        const lastName = document.getElementById('last-name').value.trim();
+        const email = document.getElementById('email').value.trim();
+
+        if (firstName === "") {
+            alert("Please fill in your First Name");
+            return;
+        }
+        if (lastName === "") {
+            alert("Please fill in your Last Name");
+            return;
+        }
+        if (email === "") {
+            alert("Please fill in your Email");
+            return;
+        }
+
+        //Update step 1 text summary
+        document.getElementById('summary-1').innerHTML = `${firstName} ${lastName}`;
+        openStep(2); //open step 2 when valid
+    }
+
+    else if (currentStep === 2) {
+        const isPickup = document.getElementById('radio-pickup').checked;
+        if (isPickup) {
+            document.getElementById('summary-2').innerHTML = `Store Pick-up (Free)`;
+            openStep(3);
+        } else {
+            const address = document.getElementById('address').value.trim();
+            const suburb = document.getElementById('suburb').value.trim();
+
+            if (address === "") { 
+                alert("Please fill in your address!");
+                return;
+            }
+            if (suburb === "") { 
+                alert("Please fill in your address!");
+                return;
+            }
+
+            document.getElementById('summary-2').innerHTML = `Delivery ($${shippingFee.toFixed(2)})`;
+            openStep(3);
+        }
+    }
+}
+
+//5. Hide/show billing address
+function toggleBillingAddress(){
+    const isSame = document.getElementById('same-as-delivery').checked;
+    if (isSame) {
+        document.getElementById('billing-custom-fields').classList.add('hidden');
+    } else {
+        document.getElementById('billing-custom-fields').classList.remove('hidden');
+    }
+}
+
+//6. Place order
+function finalPlaceOrder() {
+    const isAgree = document.getElementById('agree-terms').checked;
+    if (!isAgree) {
+        alert("You must agree to the Terms & Conditions to place your order!");
+        return;
+    }
+}
