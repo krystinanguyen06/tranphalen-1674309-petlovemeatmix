@@ -255,7 +255,7 @@ if (detailName) {
         document.getElementById('display-price').innerText = `$${product.price.toFixed(2)}`;
         const weightContainer = document.getElementById('weight-options-container');
         if (weightContainer) {
-            weightContainer.innerHTML = `<div class="fixed-weight-badge active"`;
+            weightContainer.innerHTML = `<div class="fixed-weight-badge active">Standard</div>`;
             }
         }
     } 
@@ -310,7 +310,7 @@ function renderCart() {
         const originalProduct = products.find(p => p.id === item.id);
         let sizeOptionsHTML = '';
         let unitPriceText = '';
-        let currentItemPrice = currentOption.price;
+        let currentItemPrice = item.price || 0;
 
         if (originalProduct && originalProduct.category === "meatmix") {
             sizeOptionsHTML = Object.keys(originalProduct.options).map(sizeKey => {
@@ -318,10 +318,10 @@ function renderCart() {
                 return `<option value="${sizeKey}" ${isSelected}>${sizeKey}</option>`;
             }).join('');
 
-            const currentOption = originalProduct.options[item.size];
-            if (currentOption) {
-                unitPriceText = `($${currentOption.unitPrice}/100g)`;
-                currentItemPrice = currentOption.price;
+            const targetOption = originalProduct.options[item.size];
+            if (targetOption) {
+                unitPriceText = `($${targetOption.unitPrice}/100g)`;
+                currentItemPrice = targetOption.price;
             }
         } else {
             sizeOptionsHTML = `<option value="${item.size}" selected>${item.size}</option>`;
@@ -335,6 +335,7 @@ function renderCart() {
                 <div class="cart-item-header">
                     <h3>${item.name}</h3>
                     <button class="trash-delete-btn" onclick="removeProductFromCart(${index})" aria-label="Delete product">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7F6070" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trash2-icon lucide-trash-2"><path d="M10 11v6"/><path d="M14 11v6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M3 6h18"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
                     </button>
                 </div>
                 <div class="cart-size-row">
@@ -349,13 +350,13 @@ function renderCart() {
                     <div class="cart-qty-row">
                         <div class="cart-stepper-container">
                             <span class="cart-meta-label">Qty.:</span>
-                            <button class="cart-stepper-btn" onclick="updateCartItemQty(${index}, -1),>-</button>
+                            <button class="cart-stepper-btn" onclick="updateCartItemQty(${index}, -1)">-</button>
                             <span class="cart-qty-value">${item.qty}</span>
-                            <button class="cart-stepper-btn" onclick="updateCartItemQty(${index}, 1),>+</button>
+                            <button class="cart-stepper-btn" onclick="updateCartItemQty(${index}, 1)">+</button>
                         </div>
                         
                         <div class="cart-row-price-display">
-                            $${currentItemPrice.toFixed(2)}
+                            $${(currentItemPrice * item.qty).toFixed(2)}
                         </div>
                         
                     </div>
@@ -437,13 +438,38 @@ window.addDetailtoCart = function() {
     localStorage.setItem('shoppingCart', JSON.stringify(cart));
     alert(`Added ${quantity}x ${product.name} (${selectedSize}) to cart successfully!`);
 
-    localStorage.setItem('shoppingCart', JSON.stringify(cart));
-
-    alert('Added ${quantity}x ${product.name} (${selectedSize}) to cart successfully!');
-
     window.location.href="cart.html";
 };
 
+// function actions in cart page
+window.removeProductFromCart = function(index) {
+    let cart = loadCartData();
+    cart.splice(index, 1);
+    localStorage.setItem('shoppingCart', JSON.stringify(cart));
+    renderCart();
+};
+
+window.updateCartItemQty = function(index, change) {
+    let cart = loadCartData();
+    cart[index].qty += change;
+    if (cart[index].qty <1) {
+        cart.splice(index, 1);
+    }
+    localStorage.setItem('shoppingCart', JSON.stringify(cart));
+    renderCart();
+};
+
+window.updateCartItemSize = function(index, newSize) {
+    let cart = loadCartData();
+    const item = cart[index];
+    const originalProduct = products.find(p => p.id === item.id);
+    if (originalProduct && originalProduct.category === "meatmix") {
+        item.size = newSize;
+        item.price = originalProduct.options[newSize].price;
+    }
+    localStorage.setItem('shoppingCart', JSON.stringify(cart));
+    renderCart();
+};
 
 
 
