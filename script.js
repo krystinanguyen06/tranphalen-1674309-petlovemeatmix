@@ -541,11 +541,10 @@ function toggleDeliveryFields(){
         //If suburb is "coburg" then shipping fee is $5, else standard $10
         if (suburbInput === 'coburg') {
             shippingFee = 5;
-            document.getElementById('shipping-note').innerText = "Shipping fee for Coburg area is $5.00";
+            document.getElementById('shipping-note').innerText = "Shipping fee for Coburg area is $5.00.";
         } else {
             shippingFee = 10;
-            document.getElementById('shipping-note').innerText = "Standard Shipping Fee is $10.00";
-        }
+            document.getElementById('shipping-note').innerText = "Standard Shipping Fee is $10.00.";}
     }
     //Update final total fee
     displayOrderSummary();
@@ -557,6 +556,7 @@ function validateAndNext(currentStep){
         const firstName = document.getElementById('first-name').value.trim();
         const lastName = document.getElementById('last-name').value.trim();
         const email = document.getElementById('email').value.trim();
+        const phone = document.getElementById('phone').value.trim();
 
         if (firstName === "") {
             alert("Please fill in your First Name");
@@ -571,8 +571,14 @@ function validateAndNext(currentStep){
             return;
         }
 
+        if (phone === "") {
+            alert("Please fill in your Phone number");
+            return;
+        }
+
+
         //Update step 1 text summary
-        document.getElementById('summary-1').innerHTML = `${firstName} ${lastName}`;
+        document.getElementById('summary-1').innerHTML = `${firstName} ${lastName} <br> ${email} <br> ${phone}`;
         openStep(2); //open step 2 when valid
     }
 
