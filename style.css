@@ -1438,3 +1438,68 @@ select {
 .input-full {
   margin-bottom: 12px;
 }
+
+.confirmation-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 70vh;
+  padding: 40px 20px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.confirmation-page .content-wrapper {
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.confirmation-page h1 {
+  font-family: var(--font-heading);
+  color: var(--plum);
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.confirmation-page p {
+  font-family: var(--font-body);
+  color: var(--plum);
+  font-size: 1.2rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.confirmation-page .btn-primary {
+  display: inline-block;
+  padding: 14px 45px;
+  background-color: var(--cream);
+  color: var(--plum);
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 25px;
+  transition: all 0.3s ease-in-out;
+  margin-top: 15px;
+}
+
+.confirmation-page .btn-primary:hover {
+  background-color: var(--plum);
+  color: var(--cream);
+  transform: translateY(-2px);
+}
+
+.confirmation-page .help-nav a {
+  font-family: var(--font-body);
+  color: var(--plum);
+  font-size: 1.1rem;
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+.confirmation-page .help-nav a:hover {
+  transform: translateY(-2px);
+}
