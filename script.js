@@ -145,13 +145,19 @@ function renderProduct(product) {
     return `
     <div class="product-list-card" data-id="${product.id}">
         <div class="product-image-container">
-            <img src="${product.image}" alt="${product.name}">
+            <a href="product-page.html?id=${product.id}">
+                <img src="${product.image}" alt="${product.name}">
+            </a>
             <div class="product-tags">
                 ${product.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
             </div>
         </div>
         
-        <h3>${product.name}</h3>
+        <h3>
+            <a href="product-page.html?id=${product.id}" class="product-card-title-link">
+            ${product.name}
+            </a>
+        </h3>
 
         <div class="stock-boxes">${stockText}</div>
         
@@ -164,9 +170,6 @@ function renderProduct(product) {
         </div>
 
         <div class="product-actions">
-            <button>
-                <a href="product-page.html?id=${product.id}" class="view-btn">View product</a>
-            </button>
             <button class="quick-add" onclick="window.addtoCart(${product.id})">Quick add</button>
         </div>
     </div>
@@ -354,7 +357,6 @@ function renderCart() {
 
                     <div class="cart-qty-row">
                         <div class="cart-stepper-container">
-                            <span class="cart-meta-label">Qty.:</span>
                             <button class="cart-stepper-btn" onclick="updateCartItemQty(${index}, -1)">-</button>
                             <span class="cart-qty-value">${item.qty}</span>
                             <button class="cart-stepper-btn" onclick="updateCartItemQty(${index}, 1)">+</button>
@@ -615,4 +617,8 @@ function finalPlaceOrder() {
         alert("You must agree to the Terms & Conditions to place your order!");
         return;
     }
+
+    localStorage.removeItem('shoppingCart');
+    window.location.href="confirmation.html";
+
 }
