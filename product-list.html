@@ -18,7 +18,8 @@
         <!-- Use the aria-label attribute for screen reader accessibility -->
          <nav class="navbar" aria-label="Navigation bar">
             <ul class="nav-left">
-                <li><a href="index.html" class="nav-item">
+                <li>
+                    <a href="index.html" class="nav-item">
                         <!-- Use the aria-hidden attribute for screen reader to neglect the icon -->
                         <!-- Svg icon is copied from Lucide library -->
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-icon" area-hidden="true">
@@ -26,47 +27,19 @@
                         </svg>
                     </a>
                 </li>
-                <li class="nav-item-dropdown">
-                    <div class="shop-container">
-                        <a href="product-list.html" class="nav-item">
-                            <!-- Use the aria-hidden attribute for screen reader to neglect the icon -->
-                            <!-- Svg icon is copied from Lucide library -->
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#F9EEE8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bone-icon lucide-bone"><path d="M17 10c.7-.7 1.69 0 2.5 0a2.5 2.5 0 1 0 0-5 .5.5 0 0 1-.5-.5 2.5 2.5 0 1 0-5 0c0 .81.7 1.8 0 2.5l-7 7c-.7.7-1.69 0-2.5 0a2.5 2.5 0 0 0 0 5c.28 0 .5.22.5.5a2.5 2.5 0 1 0 5 0c0-.81-.7-1.8 0-2.5Z"/></svg>
-                            <!-- Use tag <span> to keep the label on the same line with the icon -->
-                        </a>
-                        <!-- Use of the drop-down icon to show the ability to choose other categories -->
-                        <button class="dropdown-toggle" aria-label="Read more categories">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-icon-down" aria-hidden="true">
-                                <path d="m6 9 6 6 6-6"/>
-                            </svg> <!--I used to use two type of icon up and down for the animation of the toggle dropdown menu but the animation does not work in this case so I changed to use just one dropdown arrow and code the animation of it turning for 180 degrees in the css -->
-                        
-                        </button>
-                    </div>
-
-                    <ul class="dropdown-menu">
-                        <li><a href="product-list-meatmix.html">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-icon" aria-hidden="true">
-                                <path d="M16.4 13.7A6.5 6.5 0 1 0 6.28 6.6c-1.1 3.13-.78 3.9-3.18 6.08A3 3 0 0 0 5 18c4 0 8.4-1.8 11.4-4.3"/>
-                                <path d="m18.5 6 2.19 4.5a6.48 6.48 0 0 1-2.29 7.2C15.4 20.2 11 22 7 22a3 3 0 0 1-2.68-1.66L2.4 16.5"/>
-                                <circle cx="12.5" cy="8.5" r="2.5"/>
-                            </svg>
-                            <span>Meat Mix</span>
-                            </a>
-                        </li>
-                        <li><a href="product-list-treats.html">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="nav-icon" aria-hidden="true">
-                                <path d="M17 10c.7-.7 1.69 0 2.5 0a2.5 2.5 0 1 0 0-5 .5.5 0 0 1-.5-.5 2.5 2.5 0 1 0-5 0c0 .81.7 1.8 0 2.5l-7 7c-.7.7-1.69 0-2.5 0a2.5 2.5 0 0 0 0 5c.28 0 .5.22.5.5a2.5 2.5 0 1 0 5 0c0-.81-.7-1.8 0-2.5Z"/>
-                            </svg>
-                            <span>Meat Mix</span>
-                            </a>
-                        </li>
-                    </ul>
+                <li>
+                    <a href="product-list.html" class="nav-item" aria-label="Shop all products">
+                        <!-- Use the aria-hidden attribute for screen reader to neglect the icon -->
+                        <!-- Svg icon is copied from Lucide library -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F9EEE8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-beef-icon lucide-beef"><path d="M16.4 13.7A6.5 6.5 0 1 0 6.28 6.6c-1.1 3.13-.78 3.9-3.18 6.08A3 3 0 0 0 5 18c4 0 8.4-1.8 11.4-4.3"/><path d="m18.5 6 2.19 4.5a6.48 6.48 0 0 1-2.29 7.2C15.4 20.2 11 22 7 22a3 3 0 0 1-2.68-1.66L2.4 16.5"/><circle cx="12.5" cy="8.5" r="2.5"/></svg>
+                        <!-- Use tag <span> to keep the label on the same line with the icon -->
+                    </a>
                 </li>
             </ul>
-            
+
             <div class="nav-center">
                 <a href="index.html" aria-label="Back to homepage">
-                    <img src="assets/logo.png" alt="Pet Love logo" class="logo-img">
+                    <img src="assets/logo.png" alt="Pet Love logo" class="main-logo">
                 </a>
             </div>
 
@@ -98,7 +71,7 @@
             <p>Our recipes are designed with your pet's health in mind to keep your pet healthy and happy.
                 Made by hand, fresh everyweek, there are no preservatives or additives in our products.     
             </p>
-            <hr>
+            <hr class="divider">
         </section>
 
         <section class="product-section">
@@ -113,22 +86,35 @@
                     </div>
                 </div>
 
-                <label>Filtering</label>
-                    <div class="filter-group">
-                        <label><input type="checkbox" class="tag-filter" value="Gentle digestion">Gentle digestion</label>
-                        <label><input type="checkbox" class="tag-filter" value="High energy">High energy</label>
-                        <label><input type="checkbox" class="tag-filter" value="Hypoallergenic">Hypoallergenic</label>
+                <div class="filter-mobile-toggle" onclick="toggleMobileFilter()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7F6070" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sliders-horizontal-icon lucide-sliders-horizontal"><path d="M10 5H3"/><path d="M12 19H3"/><path d="M14 3v4"/><path d="M16 17v4"/><path d="M21 12h-9"/><path d="M21 19h-5"/><path d="M21 5h-7"/><path d="M8 10v4"/><path d="M8 12H3"/></svg>
+                    <span>Filtering & sorting</span>
+                </div>
+
+                <div class="filter-sort-content" id="filterContent">
+                    <div class="filter-section-wrapper">
+                        <label class="filter-title">Filtering</label>
+                        <div class="filter-group">
+                            <label><input type="checkbox" class="tag-filter" value="Gentle digestion">Gentle digestion</label>
+                            <label><input type="checkbox" class="tag-filter" value="High energy">High energy</label>
+                            <label><input type="checkbox" class="tag-filter" value="Hypoallergenic">Hypoallergenic</label>
+                        </div>
                     </div>
                         
-                <div class="filterandsort-group">
-                    <label>Sort by:</label>
-                    <select id="sort-options">
-                        <option value="default">Default</option>
-                        <option value="price-lowhigh">Price: Low to High</option>
-                        <option value="price-highlow">Price: High to Low</option>
-                        <option value="name-az">Name: A to Z</option>
-                        <option value="name-za">Name: Z to A</option>
-                    </select>
+                    <div class="filterandsort-group">
+                        <label class="filter-title">Sort by:</label>
+                        <select id="sort-options">
+                            <option value="default">Default</option>
+                            <option value="price-lowhigh">Price: Low to High</option>
+                            <option value="price-highlow">Price: High to Low</option>
+                            <option value="name-az">Name: A to Z</option>
+                            <option value="name-za">Name: Z to A</option>
+                        </select>
+                </div>
+
+                    </div>
+                    
+
                 </div>
             </aside>
 

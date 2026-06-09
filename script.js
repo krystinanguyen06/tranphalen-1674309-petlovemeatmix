@@ -351,7 +351,6 @@ function renderCart() {
                         <select class="cart-weight-select" onchange="updateCartItemSize(${index}, this.value)">
                             ${sizeOptionsHTML}
                         </select>
-                        <div class="cart-unit-divider"></div>
                         <div class="cart-unit-price-label">${unitPriceText}</div>
                     </div>
 
