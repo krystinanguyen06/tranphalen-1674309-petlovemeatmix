@@ -448,6 +448,55 @@ window.addDetailtoCart = function() {
     window.location.href="cart.html";
 };
 
+//Quick add function
+window.addtoCart = function(productId) {
+    //find product based on id
+    const product = products.find(p => p.id === productId);
+    if (!product) return;
+
+    //find product size
+    const cardElement = document.querySelector(`.product-list-card[data-id="${productId}"]`);
+
+    let selectedSize = "200g";
+    let productPrice = product.price || 0;
+
+    if (product.category === "meatmix") {
+        if (cardElement) {
+            const selectEl = cardElement.querySelector('weight-select');
+            if (selectEl) selectedSize = selectEl.value;
+        }
+        productPrice = product.options[selectedSize].price;
+    } else {
+        selectedSize = "Standard";
+    }
+
+    //3. default one product
+    const cartItem = {
+        id: product.id,
+        name: product.name,
+        image: product.image,
+        size: selectedSize,
+        qty: 1,
+        price: productPrice
+    };
+    
+    //4. loadCartData()
+    let cart = loadCartData();
+    const existingIndex = cart.findIndex(item => item.id === cartItem.id && item.size === cartItem.size);
+
+    if (existingIndex > -1) {
+        cart[existingIndex].qty += 1;
+    } else {
+        cart.push(cartItem);
+    }
+
+    //5. save back to localStorage and take user to the shopping cart
+    localStorage.setItem('shoppingCart', JSON.stringify(cart));
+
+    alert(`Added 1x ${product.name} (${selectedSize}) to cart successfully!`);
+    window.location.href = "cart.html";
+};
+
 // function actions in cart page
 window.removeProductFromCart = function(index) {
     let cart = loadCartData();

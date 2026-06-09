@@ -17,10 +17,18 @@
 
 /* Standard 1.6 line-height in web design */
 body {
+  display: flex;
+  flex-direction: column;
   font-family: var(--font-body);
   background-color: var(--beige);
   color: var(--plum);
   line-height: 1.6;
+  min-height: 100vh;
+  margin: 0;
+}
+
+main {
+  flex: 1;
 }
 
 h1, h2, h3 {
@@ -801,6 +809,19 @@ select {
   background-position: right 12px center;
   background-size: 1.2rem;
 }
+
+.product-page .tag {
+  color: var(--plum);
+  background-color: var(--cream);
+  padding: 6px 24px;
+  border-radius: 20px;
+  border: none;
+  margin: 0;
+  display: inline-block;
+  font-family: inherit;
+  font-size: 1rem;
+}
+
 /* SHOPPING CART PAGE */
 .cart-item-list {
   flex: 1;
@@ -1572,3 +1593,4 @@ select {
   object-fit: contain;
   display: block;
 }
+
