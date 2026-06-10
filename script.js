@@ -440,9 +440,25 @@ window.addDetailtoCart = function() {
 
     //overwrite array to the localStorage
     localStorage.setItem('shoppingCart', JSON.stringify(cart));
-    alert(`Added ${quantity}x ${product.name} (${selectedSize}) to cart successfully!`);
 
-    window.location.href="cart.html";
+    window.showSuccessToast = function(message) {
+        const container = document.getElementById('toast-container');
+        if (!container) return;
+
+        const toast = document.createElement('div');
+        toast.className = 'custom-toast';
+
+        toast.innerHTML = `
+            ${message}
+        `;
+        container.appendChild(toast);
+
+    }
+
+    showSuccessToast(`Added ${quantity}x ${product.name} (${selectedSize}) to cart successfully!`);
+    setTimeout(() => {
+        window.location.href = "cart.html";
+    }, 1500);
 };
 
 //Quick add function
@@ -490,9 +506,27 @@ window.addtoCart = function(productId) {
     //5. save back to localStorage and take user to the shopping cart
     localStorage.setItem('shoppingCart', JSON.stringify(cart));
 
-    alert(`Added 1x ${product.name} (${selectedSize}) to cart successfully!`);
-    window.location.href = "cart.html";
-};
+    window.showSuccessToast = function(message) {
+        const container = document.getElementById('toast-container');
+        if (!container) return;
+
+        const toast = document.createElement('div');
+        toast.className = 'custom-toast';
+
+        toast.innerHTML = `
+            <div class="toast-message">${message}</div>
+            <div class="toast-button">
+                <button class="toast-btn btn-back-shop" onclick="this.closest('.custom-toast').remove()">Back</button>
+                <a href="cart.html" class="toast-btn btn-view-cart">View Cart</a>
+            </div>
+        `;
+
+        container.appendChild(toast);
+
+    }
+
+    showSuccessToast(`Added 1x ${product.name} (${selectedSize}) to cart successfully!`);
+}
 
 // function actions in cart page
 window.removeProductFromCart = function(index) {

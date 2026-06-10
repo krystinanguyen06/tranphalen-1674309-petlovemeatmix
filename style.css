@@ -150,6 +150,8 @@ section {
   cursor: pointer;
   padding: 10px 40px 10px 40px;
   margin-top: 20px;
+  border: solid 1px var(--plum);
+  font-weight: bold;
 }
 
 .hero p {
@@ -758,6 +760,7 @@ select {
   padding: 8px 36px;
   width: 100%;
   margin-top: 20px;
+  font-weight: bold;
 }
 
 .action-buttons-row .add-to-cart-btn:hover {
@@ -1087,6 +1090,10 @@ select {
   border: solid 1px var(--plum);
 }
 
+.cart-page .btn-checkout {
+  font-weight: bold;
+}
+
 .cart-page .btn-back {
   background-color: var(--skyblue);
   color: var(--plum);
@@ -1242,6 +1249,7 @@ select {
   font-weight: bold;
   transition: all 0.2s ease-in-out;
   margin-top: 10px;
+  border: solid 1px var(--plum);
 }
 
 .checkout-page .btn-step-next:hover,
@@ -1467,6 +1475,7 @@ select {
   transition: all 0.2s ease-in-out;
   box-sizing: border-box;
   font-weight: bold;
+  border: solid 1px var(--plum);
 }
 
 .checkout-page .btn-back:hover {
@@ -1604,7 +1613,90 @@ select {
   height: 36px;
 }
 
+/* toast */
+.toast-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100000;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  pointer-events: none;
+}
+
+.custom-toast {
+  pointer-events: auto;
+  background-color: var(--plum);
+  color: var(--cream);
+  font-family: var(--font-body);
+  padding: 20px 32px;
+  border-radius: 36px;
+  font-size: 1.4rem;
+  text-align: center;
+}
+
+.toast-button {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+  margin-top: 16px;
+  box-sizing: border-box;
+}
+
+.toast-button .btn-view-cart {
+  flex: 1;
+  background-color: var(--cream);
+  color: var(--plum);
+  padding: 8px 24px;
+  border-radius: 28px;
+  text-decoration: none;
+  border: solid 1px var(--plum);
+  font-size: 1.25rem;
+}
+
+.toast-button .btn-back-shop {
+  flex: 1;
+  background-color: var(--skyblue);
+  color: var(--plum);
+  padding: 8px 24px;
+  border-radius: 28px;
+  text-decoration: none;
+  border: solid 1px var(--plum);
+  font-size: 1.25rem;
+  font-family: var(--font-body);
+}
+
 @media (max-width: 600px) {
+
+  .toast-container {
+    gap: 6px;
+  }
+
+  .custom-toast {
+    padding: 10px;
+    border-radius: 16px;
+    font-size: 1.05rem;
+    width: 290px;
+  }
+
+  .toast-button {
+    gap: 10px;
+    margin-top: 10px;
+  }
+
+  .toast-button .btn-view-cart {
+    flex: 1;
+    padding: 6px 10px;
+    font-size: 1.05rem;
+  }
+
+  .toast-button .btn-back-shop {
+    flex: 1;
+    padding: 6px 10px;
+    font-size: 1.05rem;
+  }
   
   .filter-sort-content {
     display: none;
@@ -2293,24 +2385,6 @@ select {
 .footer-phone {
   text-align: left;
 }
-
-
-
-
-
-
-
-
-
-  
-  
-  
-
-
-  
-
-  
-
 
 }
 
