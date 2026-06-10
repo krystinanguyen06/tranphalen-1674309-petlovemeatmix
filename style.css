@@ -16,6 +16,13 @@
 }
 
 /* Standard 1.6 line-height in web design */
+html, body {
+  width: 100%;
+  max-width: 100%;
+  padding: 0;
+  overflow-x: hidden;
+}
+
 body {
   display: flex;
   flex-direction: column;
@@ -79,85 +86,6 @@ section {
   width: 100%;
   margin-left: auto;
   margin-right: auto;
-}
-
-/* Container for the toggle list */
-.shop-container {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-
-/* Dropdown toggle list */
-.nav-item-dropdown {
-  position: relative; /* Set position to relative to position the dropdown menu absolutely within this container */
-}
-
-.dropdown-menu {
-  display:none;
-  position:absolute;
-  background-color: var(--plum);
-  padding: 10px;
-  list-style: none;
-  padding: 10px;
-  z-index: 1000; /* Ensure the dropdown menu appears above other content */
-}
-
-.nav-icon-up {
-  display: none;
-}
-
-.nav-icon-down {
-  display: block;
-}
-/* When the dropdown menu is visible, show the up icon and hide the down icon */
-.dropdown-toggle .nav-icon-down {
-  display: none;
-}
-
-.dropdown-toggle .nav-icon-up {
-  display: block;
-}
-
-/* Dropdown toggle animation */
-.dropdown-toggle {
-  background: none;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  color: var (--beige);
-  display: flex;
-  align-items: center;
-}
-
-.nav-icon-down {
-  width: 20px;
-  height: 20px;
-  stroke: currentColor;
-  transition: transform 0.3s ease; /* Smooth transition for the rotation */
-  transform: rotate (0deg); /* Initial state of the arrow */
-}
-
-/* Active button is clicked, rotate the arrow 180 degrees */
-.dropdown-toggle.active .nav-icon-down {
-  transform: rotate(180deg);
-}
-
-/* Show the dropdown menu when the button is active */
-.nav-item-dropdown {
-  position: relative; 
-}
-
-.dropdown-menu {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background-color: var(--plum);
-  min-width: 150px;
-  padding: 10px;
-  z-index: 1000;
-  border-radius: 4px;
 }
 
 /* Style of icons on the navigation bar */
@@ -237,26 +165,60 @@ section {
 
 /* PRODUCTS ON HOMEPAGE */
 .products-section {
-  background-color: var(--plum);
+  background-color: var(--skyblue);
   width: 100%;
-  padding: 0px;
+  padding: 0 150px 60px 150px;
   margin: 0px;
 }
 
-.products-section h2 {
-  color: var(--beige);
-  font-size: 2.5rem;
-  margin: 30px;
+.main-header {
+  color: var(--plum);
+  font-size: 2.8rem;
+  margin: 30px 150px 12px 150px;
 }
 
-.product-grid {
+.main-caption {
+  font-size: 1.4rem;
+  margin-bottom: 30px;
+}
+
+.homepage .product-row-grid {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px;
-  margin: 10px;
-  margin-top: 0px;
-  padding-top: 0px;  
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  box-sizing: border-box;
+  gap: 70px;
+}
+
+.homepage .product-list-card {
+  padding: 0;
+  max-width: 550px;
+  border-radius: 36px;
+  box-sizing: border-box;
+}
+
+.products-section img {
+  width: 100%;
+  height: 100%;
+}
+
+.homepage .product-list-card h3 {
+  font-size: 1.8rem;
+  margin-bottom: 0;
+  margin-top: 20px;
+}
+
+.homepage .product-list-card .stock-boxes {
+  font-size: 1.2rem;
+  margin-bottom: 0;  
+  margin-top: 12px;
+}
+
+.homepage .product-list-card .large-btn {
+  font-size: 1.8rem;
+  width: 100%;
+  text-align: center;
 }
 
 .product-grid img {
@@ -282,7 +244,9 @@ section {
   text-decoration: none;
   text-decoration: underline 1px var(--plum);
   text-underline-offset: 6px;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   width: 100%;
 }
 
@@ -311,6 +275,47 @@ section {
   color: var(--skyblue);
   font-size: 1.4rem;
   transition: all 0.3s ease;
+}
+
+/* Our story */
+.about-section {
+  background-color: var(--beige);
+  width: 100%;
+  padding: 0 150px 60px 150px;
+  margin: 0px;
+}
+
+.about-section img {
+  width: 100%;
+  height: 100%;
+  border-radius: 24px;
+}
+
+/* Our customer */
+.customer-flex-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 45px;
+  width: 100%;
+}
+
+.customer-card {
+  flex: 1 1 30%;
+  max-width: 360px;
+  padding: 0;
+}
+
+.customer-card img {
+  border-radius: 24px;
+}
+
+.customer-card h3 {
+  font-size: 1.8rem;
+}
+
+.feedback-text {
+  font-size: 1.15rem;
 }
 
 
@@ -547,6 +552,8 @@ select {
   border: none;
   width: 100%;
   padding: 8px 0 8px 0;
+  font-weight: bold;
+  border: solid 1px var(--plum);
 }
 
 .product-actions .quick-add:hover {
@@ -1520,6 +1527,7 @@ select {
   border-radius: 25px;
   transition: all 0.3s ease-in-out;
   margin-top: 15px;
+  border: solid 1px var(--plum);
 }
 
 .confirmation-page .btn-primary:hover {
@@ -1733,6 +1741,8 @@ select {
     width: 100%;
     text-align: center;
     font-size: 1.4rem;
+    border: solid 1px var(--plum);
+    font-weight: bold;
   }
 
   .product-grid {
@@ -2170,6 +2180,7 @@ select {
     font-size: 1rem;
     padding: 8px 0;
     margin: 0 0 12px 0;
+    border: solid 1px var(--plum);
   }
 
   .checkout-page .step-summary-text {
@@ -2185,9 +2196,103 @@ select {
     margin-bottom: 24px;
   }
 
+  .products-section {
+    padding: 20px;
+  }
 
+  .main-header{
+    margin: 0;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+  }
 
+  .homepage .product-row-grid {
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
 
+  .products-section .product-list-card h3{
+    font-size: 1.35rem;
+    margin-top: 8px;
+    text-align: center;
+  }
+
+  .products-section .product-list-card .stock-boxes {
+    font-size: 1rem;
+    margin-top: 8px;
+    justify-content: center;
+  }
+
+  .homepage .product-list-card .large-btn {
+  font-size: 1.4rem;
+  width: 100%;
+  text-align: center;
+  margin-top: 8px;
+}
+
+.main-caption {
+  font-size: 1rem;
+  margin-bottom: 12px;
+}
+
+.main-header {
+  margin-bottom: 0px;
+}
+ 
+.about-section {
+    padding: 20px;
+}
+
+/*our customer */
+.customer-flex-container {
+  justify-content: flex-start;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding: 10px 20px;
+  scroll-snap-type: x mandatory;
+}
+
+.customer-flex-container::-webkit-scrollbar {
+  display: none;
+}
+
+.customer-card {
+  flex: 0 0 85%;
+  max-width: 400px;
+  scroll-snap-align: center;
+}
+
+.customer-card h3 {
+  font-size: 1.3rem;
+}
+
+.customer-card p {
+  font-size: 1rem;
+}
+
+.footer-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.footer-contact {
+  flex: 0 0 auto;
+  width: 100%;
+  text-align: left;
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 12px;
+}
+
+.footer-address {
+  text-align: left;
+}
+
+.footer-phone {
+  text-align: left;
+}
 
 
 

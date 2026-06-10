@@ -156,6 +156,7 @@ function renderProduct(product) {
         <h3>
             <a href="product-page.html?id=${product.id}" class="product-card-title-link">
             ${product.name}
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7F6070" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-eye-icon lucide-eye"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/><circle cx="12" cy="12" r="3"/></svg>
             </a>
         </h3>
 
@@ -262,9 +263,6 @@ if (detailName) {
         document.getElementById('display-stock').innerText = `${product.stock} packs left this week`;
         document.getElementById('display-price').innerText = `$${product.price.toFixed(2)}`;
         const weightContainer = document.getElementById('weight-options-container');
-        if (weightContainer) {
-            weightContainer.innerHTML = `<div class="fixed-weight-badge active">Standard</div>`;
-            }
         }
     } 
     
