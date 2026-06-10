@@ -49,14 +49,6 @@ h1, h2, h3 {
   align-items: center;
   padding: 22px 5%;
   background-color: var(--plum);
-  position: fixed;
-  top: 0;
-  left:0;
-  width: 100%;
-}
-
-main {
-  margin-top: 64px;
 }
 
 .nav-left, .nav-right {
@@ -1754,14 +1746,6 @@ select {
   .navbar {
     flex-direction: row;
     padding: 18px 24px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-  }
-
-  main {
-    margin-top: 60px;
   }
 
   .hero-content h1 {
@@ -1801,15 +1785,6 @@ select {
     height: 60px;
     width: 100%;
     box-sizing: border-box;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 10000;
-  }
-
-  main {
-    margin-top: 60px;
   }
 
   .nav-center a {
