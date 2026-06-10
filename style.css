@@ -49,6 +49,7 @@ h1, h2, h3 {
   align-items: center;
   padding: 22px 5%;
   background-color: var(--plum);
+  position: sticky;
 }
 
 .nav-left, .nav-right {
@@ -1744,6 +1745,7 @@ select {
   }
 
   .navbar {
+    position: sticky;
     flex-direction: row;
     padding: 18px 24px;
   }
@@ -1785,6 +1787,7 @@ select {
     height: 60px;
     width: 100%;
     box-sizing: border-box;
+    position: sticky;
   }
 
   .nav-center a {
